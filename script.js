@@ -1,5 +1,23 @@
 // --- Single Page Application Logic ---
 
+tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rail-dark': '#111827', /* Very dark blue-gray from image */
+                        'rail-accent': '#4f46e5', /* Indigo from image */
+                        'rail-light-blue': '#6366f1', /* Lighter indigo for highlights */
+                        'rail-secondary': '#374151', /* Slightly lighter dark for elements */
+                        'rail-text': '#d1d5db', /* Light gray text */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'], /* For titles */
+                    }
+                }
+            }
+        }
+
 // 1. Mobile Menu Toggle
 function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
@@ -117,3 +135,74 @@ function loadFeaturedContent() {
 
 // Initial setup call 
 document.addEventListener('DOMContentLoaded', loadFeaturedContent);
+
+// --- Interactive Route Map Logic ---
+
+// Aap ke vlogs ki ek 'database' (aap isko expand kar sakte hain)
+const videoDatabase = {
+    // Karachi to Lahore Route ke Vlogs
+    'khi-lhr': [
+        { 
+            id: 'nHADX1DrIjU', // Karakorum Express ID
+            title: 'Karakorum Express: Lahore To Karachi', 
+            desc: "Reviewing Pakistan's The Best train service." 
+        }
+    ],
+    // Rawalpindi to Karachi Route ke Vlogs
+    'rwp-khi': [
+        { 
+            id: 'udrUFc8DGns', // Green Line ID
+            title: 'Green Line Express: Margala To Karachi', 
+            desc: "Reviewing Pakistan's Premium & Luxury train service." 
+        },
+        { 
+            id: 'UFaskYWgqHM', // Karachi Express ID
+            title: 'Karachi Express: Traveling In Winter', 
+            desc: 'A mesmerizing vlog of the scenic route.' 
+        }
+    ]
+};
+
+/**
+ * Route ke hisab se video cards filter aur display karta hai.
+ */
+function showVideos(route) {
+    const resultsContainer = document.getElementById('route-video-results');
+    resultsContainer.innerHTML = ''; // Pehle results clear karein
+    
+    let videosToShow = [];
+
+    if (route === 'all') {
+        // Sab routes se videos jama karein
+        videosToShow = [...videoDatabase['khi-lhr'], ...videoDatabase['rwp-khi']];
+    } else if (videoDatabase[route]) {
+        // Sirf selected route ke videos
+        videosToShow = videoDatabase[route];
+    }
+
+    // Check karein agar koi video mila hai
+    if (videosToShow.length === 0) {
+        resultsContainer.innerHTML = '<p class="text-gray-400 text-center col-span-3">No vlogs found for this route yet.</p>';
+        return;
+    }
+
+    // Har video ke liye HTML card banayein
+    videosToShow.forEach(video => {
+        // Yeh HTML structure aap ke index.html se liya gaya hai
+        const cardHtml = `
+        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 content-card"
+             onclick="window.open('https://www.youtube.com/watch?v=${video.id}', '_blank')">
+            <div class="w-full aspect-video bg-gray-700 relative">
+                <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                    <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24"><path d="M6 3l12 9-12 9V3z"/></svg>
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="text-xl font-semibold text-white mb-2">${video.title}</h3>
+                <p class="text-gray-400 text-sm">${video.desc}</p>
+            </div>
+        </div>`;
+        resultsContainer.innerHTML += cardHtml;
+    });
+}

@@ -1,0 +1,67 @@
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; /* Darker background */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5; /* Indigo/Violet color from image */
+            border-radius: 4px;
+        }
+        /* Smooth scrolling for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Card hover effect */
+        .content-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3); /* Indigo shadow on hover */
+        }
+
+        /* Hero section background with gradient overlay */
+        .hero-background {
+            background-image: url(images/images/train-background.jpg); /* Replace with a suitable high-res image */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .hero-background::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.6) 50%, rgba(17, 24, 39, 0.2) 100%);
+        }
+
+        /* Add this inside the <style> tag in your <head> */
+.route-btn, .route-btn-all {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid #4f46e5; /* rail-accent */
+    background: transparent;
+    color: #4f46e5;
+}
+.route-btn:hover {
+    background: #4f46e5;
+    color: white;
+    transform: translateY(-2px);
+}
+.route-btn-all {
+    border-color: #374151; /* rail-secondary */
+    color: #d1d5db; /* rail-text */
+}
+.route-btn-all:hover {
+    background: #374151;
+    color: white;
+}

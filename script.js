@@ -136,73 +136,154 @@ function loadFeaturedContent() {
 // Initial setup call 
 document.addEventListener('DOMContentLoaded', loadFeaturedContent);
 
-// --- Interactive Route Map Logic ---
+// --- Interactive Route Map Logic (PLAYLIST-BASED) ---
 
-// Aap ke vlogs ki ek 'database' (aap isko expand kar sakte hain)
-const videoDatabase = {
-    // Karachi to Lahore Route ke Vlogs
-    'khi-lhr': [
-        { 
-            id: 'nHADX1DrIjU', // Karakorum Express ID
-            title: 'Karakorum Express: Lahore To Karachi', 
-            desc: "Reviewing Pakistan's The Best train service." 
-        }
-    ],
-    // Rawalpindi to Karachi Route ke Vlogs
-    'rwp-khi': [
-        { 
-            id: 'udrUFc8DGns', // Green Line ID
-            title: 'Green Line Express: Margala To Karachi', 
-            desc: "Reviewing Pakistan's Premium & Luxury train service." 
-        },
-        { 
-            id: 'UFaskYWgqHM', // Karachi Express ID
-            title: 'Karachi Express: Traveling In Winter', 
-            desc: 'A mesmerizing vlog of the scenic route.' 
-        }
-    ]
+/**
+ * (NEW) Yeh object aap ke routes ko aapki Playlist IDs se jorta (map) hai.
+ * Aap ko yahan apni asli Playlist IDs daalni hongi.
+ */
+const playlistDatabase = {
+    'khi-lhr': 'PLs_uju7fb5bcAC1y4S-wO04bL5II2ib2_',
+    'rwp-khi': 'PLs_uju7fb5bfenUjQ3Zc6ZGvAMhtzby_N',
+    'khi-roh': 'PLs_uju7fb5bfoF55xpJji7_cat6RW9V9O',
+    // Example:
+    // 'khi-lhr': 'PL_ABCdeF12G-hijKlmNOp456',
 };
 
 /**
- * Route ke hisab se video cards filter aur display karta hai.
+ * (UPDATED) Yeh function ab 'route' ke hisab se Playlist ID uthata hai
+ * aur YouTube API se uss playlist ke videos fetch karta hai.
  */
-function showVideos(route) {
+async function loadPlaylist(route) {
     const resultsContainer = document.getElementById('route-video-results');
-    resultsContainer.innerHTML = ''; // Pehle results clear karein
-    
-    let videosToShow = [];
+    if (!resultsContainer) return; // Sirf routes.html par chalega
 
-    if (route === 'all') {
-        // Sab routes se videos jama karein
-        videosToShow = [...videoDatabase['khi-lhr'], ...videoDatabase['rwp-khi']];
-    } else if (videoDatabase[route]) {
-        // Sirf selected route ke videos
-        videosToShow = videoDatabase[route];
-    }
+    // 1. Playlist ID hasil karein
+    const playlistId = playlistDatabase[route];
 
-    // Check karein agar koi video mila hai
-    if (videosToShow.length === 0) {
-        resultsContainer.innerHTML = '<p class="text-gray-400 text-center col-span-3">No vlogs found for this route yet.</p>';
+    if (!playlistId || playlistId.startsWith('YOUR_')) {
+        resultsContainer.innerHTML = `<p class="text-red-400 text-center col-span-3">Is route ke liye Playlist ID set nahi hai (script.js).</p>`;
         return;
     }
 
-    // Har video ke liye HTML card banayein
-    videosToShow.forEach(video => {
-        // Yeh HTML structure aap ke index.html se liya gaya hai
-        const cardHtml = `
-        <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 content-card"
-             onclick="window.open('https://www.youtube.com/watch?v=${video.id}', '_blank')">
-            <div class="w-full aspect-video bg-gray-700 relative">
-                <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}" class="w-full h-full object-cover">
-                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24"><path d="M6 3l12 9-12 9V3z"/></svg>
-                </div>
-            </div>
-            <div class="p-4">
-                <h3 class="text-xl font-semibold text-white mb-2">${video.title}</h3>
-                <p class="text-gray-400 text-sm">${video.desc}</p>
-            </div>
-        </div>`;
-        resultsContainer.innerHTML += cardHtml;
-    });
+    resultsContainer.innerHTML = `<p class="text-gray-400 text-center col-span-3">Loading vlogs for this route...</p>`;
+
+    if (!YOUTUBE_API_KEY) {
+        resultsContainer.innerHTML = `<p class="text-red-400 text-center col-span-3">API Key not set.</p>`;
+        return;
+    }
+
+    try {
+        // 2. API call karein (playlistItems endpoint)
+        const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${YOUTUBE_API_KEY}&playlistId=${playlistId}&part=snippet&maxResults=25`;
+        
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`API Request failed: ${response.status}`);
+        
+        const data = await response.json();
+
+        if (data.items && data.items.length > 0) {
+            resultsContainer.innerHTML = ''; // Clear loading message
+            
+            // 3. Har video ke liye HTML card banayein
+            data.items.forEach(item => {
+                const snippet = item.snippet;
+                const videoId = snippet.resourceId.videoId;
+                const title = snippet.title;
+                // Behtar thumbnail quality ke liye 'maxresdefault' ya 'sddefault' try karein
+                const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`; 
+
+                const cardHtml = `
+                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 content-card"
+                     onclick="window.open('https://www.youtube.com/watch?v=${videoId}', '_blank')">
+                    <div class="w-full aspect-video bg-gray-700 relative">
+                        <img src="${thumbnail}" alt="${title}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24"><path d="M6 3l12 9-12 9V3z"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-white mb-2">${title}</h3>
+                    </div>
+                </div>`;
+                resultsContainer.innerHTML += cardHtml;
+            });
+
+        } else {
+            resultsContainer.innerHTML = '<p class="text-gray-400 text-center col-span-3">Is playlist mein koi videos nahi milein.</p>';
+        }
+
+    } catch (error) {
+        console.error('Playlist fetch karne mein ghalti:', error);
+        resultsContainer.innerHTML = `<p class="text-red-400 text-center col-span-3">Vlogs load nahi ho sake. (Error: ${error.message})</p>`;
+    }
+}
+
+/**
+ * (UPDATED) Yeh function ab 'route' ke hisab se Playlist ID uthata hai
+ * aur YouTube API se uss playlist ke videos fetch karta hai.
+ */
+async function loadPlaylist(route) {
+    const resultsContainer = document.getElementById('route-video-results');
+    if (!resultsContainer) return; // Sirf routes.html par chalega
+
+    // 1. Playlist ID hasil karein
+    const playlistId = playlistDatabase[route];
+
+    if (!playlistId || playlistId.startsWith('YOUR_')) {
+        resultsContainer.innerHTML = `<p class="text-red-400 text-center col-span-3">Is route ke liye Playlist ID set nahi hai (script.js).</p>`;
+        return;
+    }
+
+    resultsContainer.innerHTML = `<p class="text-gray-400 text-center col-span-3">Loading vlogs for this route...</p>`;
+
+    if (!YOUTUBE_API_KEY) {
+        resultsContainer.innerHTML = `<p class="text-red-400 text-center col-span-3">API Key not set.</p>`;
+        return;
+    }
+
+    try {
+        // 2. API call karein (playlistItems endpoint)
+        const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?key=${YOUTUBE_API_KEY}&playlistId=${playlistId}&part=snippet&maxResults=25`;
+        
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error(`API Request failed: ${response.status}`);
+        
+        const data = await response.json();
+
+        if (data.items && data.items.length > 0) {
+            resultsContainer.innerHTML = ''; // Clear loading message
+            
+            // 3. Har video ke liye HTML card banayein
+            data.items.forEach(item => {
+                const snippet = item.snippet;
+                const videoId = snippet.resourceId.videoId;
+                const title = snippet.title;
+                // Behtar thumbnail quality ke liye 'maxresdefault' ya 'sddefault' try karein
+                const thumbnail = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`; 
+
+                const cardHtml = `
+                <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 content-card"
+                     onclick="window.open('https://www.youtube.com/watch?v=${videoId}', '_blank')">
+                    <div class="w-full aspect-video bg-gray-700 relative">
+                        <img src="${thumbnail}" alt="${title}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                            <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24"><path d="M6 3l12 9-12 9V3z"/></svg>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-white mb-2">${title}</h3>
+                    </div>
+                </div>`;
+                resultsContainer.innerHTML += cardHtml;
+            });
+
+        } else {
+            resultsContainer.innerHTML = '<p class="text-gray-400 text-center col-span-3">Is playlist mein koi videos nahi milein.</p>';
+        }
+
+    } catch (error) {
+        console.error('Playlist fetch karne mein ghalti:', error);
+        resultsContainer.innerHTML = `<p class="text-red-400 text-center col-span-3">Vlogs load nahi ho sake. (Error: ${error.message})</p>`;
+    }
 }

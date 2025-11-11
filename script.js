@@ -287,3 +287,50 @@ async function loadPlaylist(route) {
         resultsContainer.innerHTML = `<p class="text-red-400 text-center col-span-3">Vlogs load nahi ho sake. (Error: ${error.message})</p>`;
     }
 }
+
+// --- NEW: Photo Gallery Function ---
+function changeImage(thumbnailElement, mainImageId) {
+    const newSrc = thumbnailElement.src;
+    const mainImage = document.getElementById(mainImageId);
+    mainImage.src = newSrc;
+    const parentContainer = thumbnailElement.parentElement;
+    const allThumbnails = parentContainer.getElementsByClassName('thumbnail');
+    for (let thumb of allThumbnails) {
+        thumb.classList.remove('thumbnail-active');
+    }
+    thumbnailElement.classList.add('thumbnail-active');
+}
+
+// --- Slideshow Function ---
+// (Yeh function script.js ke end mein add karein, agar pehle nahi kiya)
+function moveSlide(n, scorecardId) {
+    // 1. Uss scorecard ke andar ke slides dhoondein
+    const slides = document.querySelectorAll(`#${scorecardId} .slide`);
+    if (slides.length === 0) return; // Agar slides nahi hain toh wapas
+
+    let currentIndex = 0;
+    // 2. Check karein ke abhi konsa slide active hai
+    for (let i = 0; i < slides.length; i++) {
+        if (!slides[i].classList.contains('hidden')) {
+            currentIndex = i;
+            break;
+        }
+    }
+
+    // 3. Puranay slide ko hide karein
+    slides[currentIndex].classList.add('hidden');
+
+    // 4. Naya index calculate karein
+    let newIndex = currentIndex + n;
+
+    // 5. Check karein ke end ya start par pohanch gaye hain (Looping)
+    if (newIndex >= slides.length) {
+        newIndex = 0; // Aakhir se wapas pehle par
+    }
+    if (newIndex < 0) {
+        newIndex = slides.length - 1; // Pehle se wapas aakhri par
+    }
+
+    // 6. Naya slide show karein
+    slides[newIndex].classList.remove('hidden');
+}

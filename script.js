@@ -1,52 +1,94 @@
 // --- Single Page Application Logic ---
 
+tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rail-dark': '#111827', /* Very dark blue-gray from image */
+                        'rail-accent': '#4f46e5', /* Indigo from image */
+                        'rail-light-blue': '#6366f1', /* Lighter indigo for highlights */
+                        'rail-secondary': '#374151', /* Slightly lighter dark for elements */
+                        'rail-text': '#d1d5db', /* Light gray text */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'], /* For titles */
+                    }
+                }
+            }
+        }
+
 // 1. Mobile Menu Toggle
 function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
     menu.classList.toggle('hidden');
 }
 
-// 2. Modal Functions (Simulated Video Player)
+// 2. Modal Functions (Video Player)
 function showModal(id) {
     const modal = document.getElementById(id);
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-    document.body.classList.add('overflow-hidden'); // Scrolling band (Disable scrolling)
+    document.body.classList.add('overflow-hidden'); 
 }
 
 function closeModal(id) {
     const modal = document.getElementById(id);
     modal.classList.add('hidden');
     modal.classList.remove('flex');
-    document.body.classList.remove('overflow-hidden'); // Scrolling chalu (Enable scrolling)
+    document.body.classList.remove('overflow-hidden');
     
-    // Fix: Video band karo jab modal band ho.
     const embedContainer = document.getElementById('latest-video-embed');
     if (embedContainer) {
-        // Iframe ko hatane se video ruk jaayegi.
         embedContainer.innerHTML = '<p class="text-gray-300 p-6">Loading your latest vlog...</p>';
     }
 }
 
-// Event listener to close modal on ESC key
+// Event listener (ESC key) for Video Modal
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        const modal = document.getElementById('latest-video-modal'); // Sirf ek modal ke liye
+        const modal = document.getElementById('latest-video-modal'); 
         if (modal && !modal.classList.contains('hidden')) {
             closeModal('latest-video-modal');
+        }
+        
+        // (NEW) ESC key image modal ko bhi band karegi
+        const imgModal = document.getElementById('image-modal');
+        if (imgModal && !imgModal.classList.contains('hidden')) {
+            closeImageModal();
         }
     }
 });
 
+
+// --- (NEW) 3. Image Modal (Lightbox) Functions ---
+function openImageModal(imageSrc) {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-image-content');
+    
+    if (modal && modalImg) {
+        modalImg.src = imageSrc; // Click ki gayi image ka link set karein
+        modal.classList.remove('hidden');
+        modal.classList.add('flex'); // Modal dikhayein
+        document.body.classList.add('overflow-hidden'); // Background scroll band karein
+    }
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('image-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex'); // Modal chupayein
+        document.body.classList.remove('overflow-hidden'); // Background scroll wapas chalu
+    }
+}
+// --- (END OF NEW FUNCTIONS) ---
+
+
 // --- YouTube Integration Logic ---
-// Zaroori: Apni Asli API Key aur Channel ID yahan daalein.
 const YOUTUBE_API_KEY = 'AIzaSyAJySKdCS1_BNrvFAf6hGtvMbU0TLgO_7w'; // Aapki API key
 const CHANNEL_ID = 'UC0jiPBcE-2QbiBLt2m3MHSQ'; // Aapka YouTube channel ID
 
-/**
- * Channel se latest long video (vlog) fetch karta hai aur modal mein embed karta hai.
- * (Yeh "Watch Latest Vlogs" button ke liye hai)
- */
 async function fetchLatestLongVideo() {
     const embedContainer = document.getElementById('latest-video-embed');
     const modalId = 'latest-video-modal';
@@ -70,7 +112,6 @@ async function fetchLatestLongVideo() {
         if (data.items && data.items.length > 0) {
             const videoId = data.items[0].id.videoId;
             const title = data.items[0].snippet.title;
-
             embedContainer.innerHTML = `
                 <iframe 
                     class="w-full h-full rounded-md" 
@@ -110,7 +151,6 @@ async function fetchFeaturedVideos() {
     }
 
     try {
-        // API call: 3 naye videos, order by date, videoDuration=long (taake shorts filter ho jayein)
         const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3&type=video&videoDuration=long`;
         
         const response = await fetch(apiUrl);
@@ -124,7 +164,6 @@ async function fetchFeaturedVideos() {
             data.items.forEach(item => {
                 const videoId = item.id.videoId;
                 const title = item.snippet.title;
-                // Layout fix karne ke liye title ko 1 line par rakhein (h-14 approx 2 lines)
                 const shortTitle = title.length > 55 ? title.substring(0, 55) + '...' : title;
                 const desc = item.snippet.description.substring(0, 80) + '...';
 
@@ -225,6 +264,7 @@ async function loadPlaylist(route) {
 }
 
 // --- NEW: Photo Gallery Function (Legacy from previous step, kept for changeImage) ---
+// (Yeh function abhi istemal nahi ho raha, lekin agar aap future mein thumbnails use karein toh kaam aayega)
 function changeImage(thumbnailElement, mainImageId) {
     const newSrc = thumbnailElement.src;
     const mainImage = document.getElementById(mainImageId);
@@ -237,7 +277,7 @@ function changeImage(thumbnailElement, mainImageId) {
     thumbnailElement.classList.add('thumbnail-active');
 }
 
-// --- Slideshow Function (THE FIX) ---
+// --- Slideshow Function ---
 // (Yeh reviews.html ke liye hai)
 function moveSlide(n, scorecardId) {
     const slides = document.querySelectorAll(`#${scorecardId} .slide`);

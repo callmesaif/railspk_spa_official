@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - The RAILSPK</title>
+    <link rel="icon" href="images/favicon.ico" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rail-dark': '#111827',
+                        'rail-accent': '#4f46e5',
+                        'rail-light-blue': '#6366f1',
+                        'rail-secondary': '#374151',
+                        'rail-text': '#d1d5db',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        html { scroll-behavior: smooth; }
+        /* Text content ke liye styles */
+        .content-area h2 {
+            font-size: 1.875rem; /* 3xl */
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .content-area p {
+            font-size: 1.125rem; /* lg */
+            color: #d1d5db; /* rail-text */
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+        .content-area ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            color: #d1d5db;
+        }
+        .content-area li {
+            margin-bottom: 0.5rem;
+        }
+        .content-area a {
+            color: #4f46e5; /* rail-accent */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-rail-dark text-rail-text font-sans antialiased">
+
+    <header class="sticky top-0 z-50 bg-rail-dark/95 backdrop-blur-sm shadow-xl">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
+            <a href="/" class="text-3xl font-extrabold text-white tracking-wide font-heading">
+                The <span class="text-rail-accent">RAILSPK</span>
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="/" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Home</a>
+                <a href="/routes" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Routes</a>
+                <a href="/reviews" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Reviews</a>
+                <a href="/about" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">About</a>
+            </nav>
+            <button class="md:hidden p-2 text-rail-text hover:text-rail-accent rounded-md focus:outline-none" onclick="toggleMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-rail-dark absolute w-full shadow-lg">
+            <a href="/" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Home</a>
+            <a href="/routes" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Routes</a>
+            <a href="/reviews" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Reviews</a>
+            <a href="/about" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">About</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="terms-of-service" class="py-16 md:py-24 bg-rail-dark">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-800 p-8 md:p-12 rounded-lg shadow-xl border border-gray-700 content-area">
+                
+                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6 font-heading text-center">
+                    Terms of Service
+                </h1>
+                <p class="text-center text-gray-400">Aakhri update: 14 November 2025</p>
+
+                <h2>1. Sharaait (Terms)</h2>
+                <p>
+                    Is website (https://therails.pk) ko access karke, aap in Terms of Service se paband hone ka aqraar (agree) karte hain. Agar aap in sharaait se muttafiq nahi hain, toh please humari site ka istemal na karein.
+                </p>
+
+                <h2>2. Content Ka Istemal (Use License)</h2>
+                <p>
+                    Website par mojood tamam content, jismein videos, images (jaise `feature-content-1.jpg`, `greenline 1.webp` etc.), text, aur logo shamil hain, The RAILSPK ki milkiyat (property) hain aur copyright se mehfooz hain.
+                </p>
+                <p>
+                    Aap is content ko zati (personal), ghair-tijarti (non-commercial) viewing ke liye dekh sakte hain. Aap ko ijazat nahi hai ke:
+                </p>
+                <ul>
+                    <li>Content ko modify ya copy karein;</li>
+                    <li>Content ko kisi bhi commercial maqsad ke liye istemal karein;</li>
+                    <li>Humari ijazat ke baghair ise kahin aur publish karein.</li>
+                </ul>
+
+                <h2>3. Disclaimer (Ghair-Zimmedari Ka Elaan)</h2>
+                <p>
+                    Humari site par mojood maloomat (jaise train reviews, ratings) sirf informational aur tafreehi (entertainment) maqasid ke liye hain. Hum Pakistan Railways ke official نمائندے (representatives) nahi hain.
+                </p>
+                <p>
+                    Hum maloomat ki durustagi (accuracy) ya waqt ki pabandi (timeliness) ki koi guarantee nahi dete. Train ke schedules, kiraye, ya services official sources se zaroor confirm karein.
+                </p>
+
+                <h2>4. Links to Other Sites</h2>
+                <p>
+                    Humari site par YouTube aur deegar social media ke links hain. Humara unn third-party sites par koi control nahi hai aur hum unke content ke zimmedar nahi hain.
+                </p>
+
+                <h2>5. Changes to These Terms</h2>
+                <p>
+                    Hum kisi bhi waqt in sharaait (terms) ko tabdeel (modify) kar sakte hain. Aap ki zimmedari hai ke waqtan-fawaqtan (periodically) is page ko check karein.
+                </g>
+
+                <h2>6. Governing Law</h2>
+                <p>
+                    In sharaait par Pakistan ke qawaneen (laws) laagu honge.
+                </p>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-rail-dark py-8 border-t border-gray-700">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+             <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://tiktok.com/@therailspk2.0" target="_blank" class="text-gray-400 hover:text-white transition duration-300" aria-label="TikTok Profile"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525 10.02c...z"/></svg></a>
+                <a href="https://www.youtube.com/@therailspk" target="_blank" class="text-gray-400 hover:text-red-600 transition duration-300" aria-label="YouTube Channel"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.195a...z"/></svg></a>
+                <a href="https://facebook.com/therailspk" target="_blank" class="text-gray-400 hover:text-blue-600 transition duration-300" aria-label="Facebook Page"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5L...z"/></svg></a>
+                <a href="https://instagram.com/therailspk" target="_blank" class="text-gray-400 hover:text-pink-600 transition duration-300" aria-label="Instagram Profile"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c...z"/></svg></a>
+            </div>
+            
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="/privacy" class="hover:text-rail-accent transition duration-300">Privacy Policy</a>
+                <a href="/terms" class="hover:text-rail-accent transition duration-300">Terms of Service</a>
+                <a href="/sitemap.xml" class="hover:text-rail-accent transition duration-300">Sitemap</a>
+            </div>
+            <p class="mt-4">&copy; 2025 The RAILSPK. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="latest-video-modal" class="hidden"></div>
+
+</body>
+</html>

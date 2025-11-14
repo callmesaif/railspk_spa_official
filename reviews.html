@@ -87,14 +87,13 @@
 
     <header class="sticky top-0 z-50 bg-rail-dark/95 backdrop-blur-sm shadow-xl">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
-            <a href="index.html" class="text-3xl font-extrabold text-white tracking-wide font-heading">
+            <a href="/" class="text-3xl font-extrabold text-white tracking-wide font-heading">
                 The <span class="text-rail-accent">RAILSPK</span>
             </a>
             <nav class="hidden md:flex space-x-8">
                 <a href="/" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Home</a>
                 <a href="/routes" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Routes</a>
-                <a href="/reviews" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Reviews</a>
-                <a href="/about" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">About</a>
+                <a href="/reviews" class="nav-link text-lg font-medium text-rail-accent transition duration-300">Reviews</a> <a href="/about" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">About</a>
             </nav>
             <button class="md:hidden p-2 text-rail-text hover:text-rail-accent rounded-md focus:outline-none" onclick="toggleMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
@@ -103,10 +102,9 @@
         <div id="mobile-menu" class="hidden md:hidden bg-rail-dark absolute w-full shadow-lg">
             <a href="/" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Home</a>
             <a href="/routes" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Routes</a>
-            <a href="/reviews" class="block py-3 px-4 text-lg font-medium text-rail-accent hover:bg-rail-secondary" onclick="toggleMenu()">Reviews</a> 
+            <a href="/reviews" class="block py-3 px-4 text-lg font-medium text-rail-accent hover:bg-rail-secondary" onclick="toggleMenu()">Reviews</a>
             <a href="/about" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">About</a>
         </div>
-    </header>
     </header>
 
     <main>
@@ -125,16 +123,13 @@
                             <div class="md:col-span-3">
                                 <h3 class="text-2xl font-bold text-white mb-1 font-heading">Green Line Express</h3>
                                 <p class="text-md text-rail-accent mb-4">All Classes</p>
-                                
                                 <p class="text-lg font-semibold text-gray-300">Overall Rating: <span class="stars">★★★★★<span class="stars-gray"></span></span></p>
-                                
                                 <ul class="text-gray-300 text-sm space-y-1 mt-4 border-t border-gray-700 pt-4">
                                     <li class="flex justify-between"><span>Punctuality:</span> <span class="stars">★★★★★<span class="stars-gray"></span></span></li>
                                     <li class="flex justify-between"><span>Cleanliness:</span> <span class="stars">★★★★★</span></li>
                                     <li class="flex justify-between"><span>Food Quality:</span> <span class="stars">★★★<span class="stars-gray">★★</span></span></li>
                                     <li class="flex justify-between"><span>Staff Behavior:</span> <span class="stars">★★★★<span class="stars-gray">★</span></span></li>
                                 </ul>
-
                                 <div class="flex gap-4 mt-4 text-sm">
                                     <div class="w-full">
                                         <h4 class="font-semibold text-green-400">✅ Pros</h4>
@@ -153,7 +148,6 @@
                                         </ul>
                                     </div>
                                 </div>
-
                                 <blockquote class="bg-gray-700/50 border-l-4 border-rail-accent p-3 rounded-r-lg mt-4">
                                     <p class="text-gray-200 text-sm italic">
                                         <span class="font-bold text-white">Verdict:</span> "Pakistan ki behtareen trains mein se ek. Comfort lajawab hai."
@@ -167,18 +161,17 @@
                                 </div>
                                 <div class="slideshow-container w-full aspect-video bg-gray-900 rounded-lg overflow-hidden relative">
                                     
-                                    <div class="slide"><img src="images/greenline_8.webp" class="w-full h-full object-contain" alt="Green Line 1"></div> 
-                                    
-                                    <div class="slide hidden"><img src="images/greenline_1.webp" class="w-full h-full object-contain" alt="Green Line 2"></div>
-                                    <div class="slide hidden"><img src="images/greenline_2.webp" class="w-full h-full object-contain" alt="Green Line 3"></div> 
-                                    <div class="slide hidden"><img src="images/greenline_3.webp" class="w-full h-full object-contain" alt="Green Line 4"></div> 
-                                    <div class="slide hidden"><img src="images/greenline_4.webp" class="w-full h-full object-contain" alt="Green Line 5"></div> 
-                                    <div class="slide hidden"><img src="images/greenline_5.webp" class="w-full h-full object-contain" alt="Green Line 6"></div> 
-                                    <div class="slide hidden"><img src="images/greenline_6.webp" class="w-full h-full object-contain" alt="Green Line 7"></div> 
-                                    <div class="slide hidden"><img src="images/greenline_7.webp" class="w-full h-full object-contain" alt="Green Line 8"></div> 
-                                    <div class="slide hidden"><img src="images/greenline_9.webp" class="w-full h-full object-contain" alt="Green Line 9"></div> 
-                                    <div class="slide hidden"><img src="images/greenline_10.webp" class="w-full h-full object-contain" alt="Green Line 10"></div>
-                                    <div class="slide hidden"><img src="images/greenline_11.webp" class="w-full h-full object-contain" alt="Green Line 11"></div> 
+                                    <div class="slide"><img src="images/greenline_8.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 1" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_1.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 2" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/greenline_2.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 3" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_3.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 4" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_4.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 5" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_5.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 6" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_6.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 7" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_7.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 8" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_9.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 9" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/greenline_10.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 10" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/greenline_11.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 11" onclick="openImageModal(this.src)"></div> 
      
                                     <a class="prev" onclick="moveSlide(-1, 'scorecard-greenline')">&#10094;</a>
                                     <a class="next" onclick="moveSlide(1, 'scorecard-greenline')">&#10095;</a>
@@ -193,16 +186,13 @@
                             <div class="md:col-span-3">
                                 <h3 class="text-2xl font-bold text-white mb-1 font-heading">Pak Business Express</h3>
                                 <p class="text-md text-rail-accent mb-4">All Classes</p>
-                                
                                 <p class="text-lg font-semibold text-gray-300">Overall Rating: <span class="stars">★★★★<span class="stars-gray">★</span></span></p>
-                                
                                 <ul class="text-gray-300 text-sm space-y-1 mt-4 border-t border-gray-700 pt-4">
                                     <li class="flex justify-between"><span>Punctuality:</span> <span class="stars">★★★<span class="stars-gray">★★</span></span></li>
                                     <li class="flex justify-between"><span>Cleanliness:</span> <span class="stars">★★★★★<span class="stars-gray"></span></span></li>
                                     <li class="flex justify-between"><span>Food Quality:</span> <span class="stars">★★★<span class="stars-gray">★★</span></span></li>
                                     <li class="flex justify-between"><span>Staff Behavior:</span> <span class="stars">★★★★★<span class="stars-gray"></span></span></li>
                                 </ul>
-
                                 <div class="flex gap-4 mt-4 text-sm">
                                     <div class="w-full">
                                         <h4 class="font-semibold text-green-400">✅ Pros</h4>
@@ -221,7 +211,6 @@
                                         </ul>
                                     </div>
                                 </div>
-
                                 <blockquote class="bg-gray-700/50 border-l-4 border-rail-accent p-3 rounded-r-lg mt-4">
                                     <p class="text-gray-200 text-sm italic">
                                         <span class="font-bold text-white">Verdict:</span> "Budget travelers ke liye acha option hai, lekin safar lamba ho sakta hai."
@@ -234,14 +223,15 @@
                                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/ctXdSDdAM-4?si=Y2owDlTDIiYf3ZXY" frameborder="0" allowfullscreen></iframe>
                                 </div>
                                 <div class="slideshow-container w-full aspect-video bg-gray-900 rounded-lg overflow-hidden relative">
-                                    <div class="slide"><img src="images/business_5.webp" class="w-full h-full object-contain" alt="Pak Business 1"></div> 
-                                    <div class="slide hidden"><img src="images/business_1.webp" class="w-full h-full object-contain" alt="Pak Business 2"></div>
-                                    <div class="slide hidden"><img src="images/business_2.webp" class="w-full h-full object-contain" alt="Pak Business 3"></div>
-                                    <div class="slide hidden"><img src="images/business_3.webp" class="w-full h-full object-contain" alt="Pak Business 4"></div>
-                                    <div class="slide hidden"><img src="images/business_4.webp" class="w-full h-full object-contain" alt="Pak Business 5"></div>
-                                    <div class="slide hidden"><img src="images/business_6.webp" class="w-full h-full object-contain" alt="Pak Business 6"></div>
-                                    <div class="slide hidden"><img src="images/business_7.webp" class="w-full h-full object-contain" alt="Pak Business 7"></div>
-                                    <div class="slide hidden"><img src="images/business_8.webp" class="w-full h-full object-contain" alt="Pak Business 8"></div>
+                                    
+                                    <div class="slide"><img src="images/business_5.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 1" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/business_1.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 2" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/business_2.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 3" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/business_3.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 4" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/business_4.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 5" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/business_6.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 6" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/business_7.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 7" onclick="openImageModal(this.src)"></div>
+                                    <div class="slide hidden"><img src="images/business_8.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 8" onclick="openImageModal(this.src)"></div>
                                     
                                     <a class="prev" onclick="moveSlide(-1, 'scorecard-pakbusiness')">&#10094;</a>
                                     <a class="next" onclick="moveSlide(1, 'scorecard-pakbusiness')">&#10095;</a>
@@ -258,10 +248,10 @@
     <footer class="bg-rail-dark py-8 border-t border-gray-700">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
              <div class="flex justify-center space-x-6 mb-6">
-                <a href="https://tiktok.com/@therailspk2.0" target="_blank" class="text-gray-400 hover:text-white transition duration-300" aria-label="TikTok Profile"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525 10.02c...z"/></svg></a>
-                <a href="https://www.youtube.com/@therailspk" target="_blank" class="text-gray-400 hover:text-red-600 transition duration-300" aria-label="YouTube Channel"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.195a...z"/></svg></a>
-                <a href="https://facebook.com/therailspk" target="_blank" class="text-gray-400 hover:text-blue-600 transition duration-300" aria-label="Facebook Page"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5L...z"/></svg></a>
-                <a href="https://instagram.com/therailspk" target="_blank" class="text-gray-400 hover:text-pink-600 transition duration-300" aria-label="Instagram Profile"><svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c...z"/></svg></a>
+                <a href="https://tiktok.com/@therailspk2.0" ...><svg>...</svg></a>
+                <a href="https://www.youtube.com/@therailspk" ...><svg>...</svg></a>
+                <a href="https://facebook.com/therailspk" ...><svg>...</svg></a>
+                <a href="https://instagram.com/therailspk" ...><svg>...</svg></a>
             </div>
             
             <div class="flex justify-center space-x-6 mt-4">
@@ -274,6 +264,10 @@
     </footer>
 
     <div id="latest-video-modal" class="hidden"></div>
-
-</body>
+    
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 z-[999] hidden items-center justify-center p-4" onclick="closeImageModal()">
+        <button class="absolute top-4 right-6 text-white text-5xl font-bold opacity-80 hover:opacity-100 transition">&times;</button>
+        <img id="modal-image-content" src="" alt="Enlarged Review Image" class="max-w-full max-h-[90vh] object-contain rounded-lg" onclick="event.stopPropagation()">
+    </div>
+    </body>
 </html>

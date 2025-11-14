@@ -25,7 +25,7 @@
 
         /* Hero section background with gradient overlay */
         .hero-background {
-            background-image: url(images/images/train-background.jpg); /* Replace with a suitable high-res image */
+            background-image: url(images/train-background.jpg); /* Replace with a suitable high-res image */
             background-size: cover;
             background-position: center;
             position: relative;

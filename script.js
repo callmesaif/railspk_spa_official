@@ -112,7 +112,9 @@ async function fetchLatestLongVideo() {
     }
 
     try {
-        const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=5&type=video&videoDuration=long`;
+        // Cache Buster ki zaroorat yahan kam hai, lekin consistency ke liye laga dete hain.
+        const cacheBuster = `&_t=${new Date().getTime()}`; 
+        const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=5&type=video&videoDuration=long${cacheBuster}`;
         
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error(`API Request failed with status: ${response.status}`);
@@ -148,11 +150,13 @@ async function fetchLatestLongVideo() {
 
 
 /**
- * (For index.html "Discover" section - FIXED THUMBNAILS/ONCLICK)
+ * (For index.html "Discover" section - **CACHE BUSTER ADDED**)
  */
 async function fetchFeaturedVideos() {
     const container = document.getElementById('video-cards-container');
     if (!container) return; 
+
+    container.innerHTML = `<p class="text-gray-400 text-center col-span-3 py-10">Latest videos load ho rahe hain...</p>`;
 
     if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'YOUR_YOUTUBE_API_KEY' || !CHANNEL_ID || CHANNEL_ID === 'YOUR_YOUTUBE_CHANNEL_ID') {
         container.innerHTML = '<p class="text-red-400 text-center col-span-3">API Key/Channel ID not set in script.js</p>';
@@ -160,8 +164,9 @@ async function fetchFeaturedVideos() {
     }
 
     try {
-        // === CHANGED: videoDuration=long filter is correct (no shorts) ===
-        const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3&type=video&videoDuration=long`;
+        // === ZAROORI FIX: Cache Buster add kiya gaya hai ===
+        const cacheBuster = `&_t=${new Date().getTime()}`; 
+        const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3&type=video&videoDuration=long${cacheBuster}`;
         
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error(`API Request failed: ${response.status}`);
@@ -177,7 +182,7 @@ async function fetchFeaturedVideos() {
                 const shortTitle = title.length > 55 ? title.substring(0, 55) + '...' : title;
                 const desc = item.snippet.description.substring(0, 80) + '...';
 
-                // === CHANGED: maxresdefault.jpg for full quality thumbnail ===
+                // maxresdefault.jpg for full quality thumbnail
                 const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
                 const cardHtml = `

@@ -1,23 +1,5 @@
 // --- Single Page Application Logic ---
 
-tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'rail-dark': '#111827', /* Very dark blue-gray from image */
-                        'rail-accent': '#4f46e5', /* Indigo from image */
-                        'rail-light-blue': '#6366f1', /* Lighter indigo for highlights */
-                        'rail-secondary': '#374151', /* Slightly lighter dark for elements */
-                        'rail-text': '#d1d5db', /* Light gray text */
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        heading: ['Poppins', 'sans-serif'], /* For titles */
-                    }
-                }
-            }
-        }
-
 // 1. Mobile Menu Toggle
 function toggleMenu() {
     const menu = document.getElementById('mobile-menu');
@@ -40,19 +22,20 @@ function closeModal(id) {
     
     const embedContainer = document.getElementById('latest-video-embed');
     if (embedContainer) {
+        // Iframe ko hatane se video ruk jaayegi.
         embedContainer.innerHTML = '<p class="text-gray-300 p-6">Loading your latest vlog...</p>';
     }
 }
 
-// Event listener (ESC key) for Video Modal
+// Event listener (ESC key) for Modals
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+        // Video Modal
         const modal = document.getElementById('latest-video-modal'); 
         if (modal && !modal.classList.contains('hidden')) {
             closeModal('latest-video-modal');
         }
-        
-        // (NEW) ESC key image modal ko bhi band karegi
+        // Image Modal
         const imgModal = document.getElementById('image-modal');
         if (imgModal && !imgModal.classList.contains('hidden')) {
             closeImageModal();
@@ -61,16 +44,39 @@ document.addEventListener('keydown', (e) => {
 });
 
 
-// --- (NEW) 3. Image Modal (Lightbox) Functions ---
+// --- 3. Custom Player Opener (NEW) ---
+function openFeaturedVideo(videoId, title) {
+    const embedContainer = document.getElementById('latest-video-embed');
+    const modalId = 'latest-video-modal';
+    
+    // Modal open karein
+    showModal(modalId);
+
+    // Video ko iframe mein embed karo
+    embedContainer.innerHTML = `
+        <iframe 
+            class="w-full h-full rounded-md" 
+            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen
+            title="${title}">
+        </iframe>
+    `;
+}
+// --- (END OF NEW CUSTOM PLAYER) ---
+
+
+// --- 4. Image Modal (Lightbox) Functions ---
 function openImageModal(imageSrc) {
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-image-content');
     
     if (modal && modalImg) {
-        modalImg.src = imageSrc; // Click ki gayi image ka link set karein
+        modalImg.src = imageSrc;
         modal.classList.remove('hidden');
-        modal.classList.add('flex'); // Modal dikhayein
-        document.body.classList.add('overflow-hidden'); // Background scroll band karein
+        modal.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
     }
 }
 
@@ -78,17 +84,21 @@ function closeImageModal() {
     const modal = document.getElementById('image-modal');
     if (modal) {
         modal.classList.add('hidden');
-        modal.classList.remove('flex'); // Modal chupayein
-        document.body.classList.remove('overflow-hidden'); // Background scroll wapas chalu
+        modal.classList.remove('flex');
+        if (document.getElementById('latest-video-modal').classList.contains('hidden')) {
+            document.body.classList.remove('overflow-hidden');
+        }
     }
 }
-// --- (END OF NEW FUNCTIONS) ---
 
 
 // --- YouTube Integration Logic ---
 const YOUTUBE_API_KEY = 'AIzaSyAJySKdCS1_BNrvFAf6hGtvMbU0TLgO_7w'; // Aapki API key
 const CHANNEL_ID = 'UC0jiPBcE-2QbiBLt2m3MHSQ'; // Aapka YouTube channel ID
 
+/**
+ * (For "Watch Latest Vlogs" button)
+ */
 async function fetchLatestLongVideo() {
     const embedContainer = document.getElementById('latest-video-embed');
     const modalId = 'latest-video-modal';
@@ -97,7 +107,7 @@ async function fetchLatestLongVideo() {
     showModal(modalId);
 
     if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'YOUR_YOUTUBE_API_KEY' || !CHANNEL_ID || CHANNEL_ID === 'YOUR_YOUTUBE_CHANNEL_ID') {
-        embedContainer.innerHTML = '<p class="text-red-400 p-6">YouTube API Key ya Channel ID set nahi hai. Kripya script.js mein update karein.</p>';
+        embedContainer.innerHTML = '<p class="text-red-400 p-6">API Key ya Channel ID set nahi hai. Kripya script.js mein update karein.</p>';
         return;
     }
 
@@ -138,12 +148,11 @@ async function fetchLatestLongVideo() {
 
 
 /**
- * (NEW) Channel se 3 naye (latest) *LONG* videos fetch karta hai.
- * (Yeh index.html par "Discover" section ke liye hai)
+ * (For index.html "Discover" section - FIXED THUMBNAILS/ONCLICK)
  */
 async function fetchFeaturedVideos() {
     const container = document.getElementById('video-cards-container');
-    if (!container) return; // Sirf index.html par chalega
+    if (!container) return; 
 
     if (!YOUTUBE_API_KEY || YOUTUBE_API_KEY === 'YOUR_YOUTUBE_API_KEY' || !CHANNEL_ID || CHANNEL_ID === 'YOUR_YOUTUBE_CHANNEL_ID') {
         container.innerHTML = '<p class="text-red-400 text-center col-span-3">API Key/Channel ID not set in script.js</p>';
@@ -151,6 +160,7 @@ async function fetchFeaturedVideos() {
     }
 
     try {
+        // === CHANGED: videoDuration=long filter is correct (no shorts) ===
         const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3&type=video&videoDuration=long`;
         
         const response = await fetch(apiUrl);
@@ -163,15 +173,18 @@ async function fetchFeaturedVideos() {
 
             data.items.forEach(item => {
                 const videoId = item.id.videoId;
-                const title = item.snippet.title;
+                const title = item.snippet.title.replace(/'/g, "\\'"); // Quotes escape for JS call
                 const shortTitle = title.length > 55 ? title.substring(0, 55) + '...' : title;
                 const desc = item.snippet.description.substring(0, 80) + '...';
+
+                // === CHANGED: maxresdefault.jpg for full quality thumbnail ===
+                const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
                 const cardHtml = `
                 <div class="bg-gray-800 rounded-xl overflow-hidden shadow-lg border border-gray-700 content-card flex flex-col">
                     <div class="w-full aspect-video bg-gray-700 flex items-center justify-center relative"
-                         onclick="window.open('https://www.youtube.com/watch?v=${videoId}', '_blank')">
-                        <img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" onerror="this.onerror=null; this.src='https://via.placeholder.co/400x225/374151/d1d5db?text=Video'" alt="${title}" class="w-full h-full object-cover">
+                         onclick="openFeaturedVideo('${videoId}', '${title}')">
+                        <img src="${thumbnail}" onerror="this.onerror=null; this.src='https://via.placeholder.co/400x225/374151/d1d5db?text=Video'" alt="${title}" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
                             <svg class="w-16 h-16 text-white opacity-90" fill="currentColor" viewBox="0 0 24 24"><path d="M6 3l12 9-12 9V3z"/></svg>
                         </div>
@@ -198,7 +211,7 @@ async function fetchFeaturedVideos() {
 
 // Initial setup call (UPDATED)
 document.addEventListener('DOMContentLoaded', () => {
-    fetchFeaturedVideos(); // Naya function yahan call hoga (index.html ke "Discover" section ke liye)
+    fetchFeaturedVideos();
 });
 
 
@@ -211,7 +224,7 @@ const playlistDatabase = {
 
 async function loadPlaylist(route) {
     const resultsContainer = document.getElementById('route-video-results');
-    if (!resultsContainer) return; // Sirf routes.html par chalega
+    if (!resultsContainer) return;
 
     const playlistId = playlistDatabase[route];
     if (!playlistId || playlistId.startsWith('YOUR_')) {
@@ -264,7 +277,6 @@ async function loadPlaylist(route) {
 }
 
 // --- NEW: Photo Gallery Function (Legacy from previous step, kept for changeImage) ---
-// (Yeh function abhi istemal nahi ho raha, lekin agar aap future mein thumbnails use karein toh kaam aayega)
 function changeImage(thumbnailElement, mainImageId) {
     const newSrc = thumbnailElement.src;
     const mainImage = document.getElementById(mainImageId);
@@ -277,8 +289,7 @@ function changeImage(thumbnailElement, mainImageId) {
     thumbnailElement.classList.add('thumbnail-active');
 }
 
-// --- Slideshow Function ---
-// (Yeh reviews.html ke liye hai)
+// --- Slideshow Function (THE FIX) ---
 function moveSlide(n, scorecardId) {
     const slides = document.querySelectorAll(`#${scorecardId} .slide`);
     if (slides.length === 0) return; 

@@ -2,28 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://therails.pk/index.html</loc>
-        <lastmod>2025-11-09</lastmod>
+        <loc>https://therails.pk/</loc>
+        <lastmod>2025-11-21</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>https://therails.pk/routes.html</loc>
-        <lastmod>2025-11-09</lastmod>
+        <loc>https://therails.pk/reviews</loc>
+        <lastmod>2025-11-21</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <url>
+        <loc>https://therails.pk/routes</loc>
+        <lastmod>2025-11-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://therails.pk/privacy.html</loc>
-        <lastmod>2025-11-09</lastmod>
+        <loc>https://therails.pk/about</loc>
+        <lastmod>2025-11-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://therails.pk/privacy</loc>
+        <lastmod>2025-11-21</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
+    
     <url>
-        <loc>https://therails.pk/terms.html</loc>
-        <lastmod>2025-11-09</lastmod>
+        <loc>https://therails.pk/terms</loc>
+        <lastmod>2025-11-21</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>

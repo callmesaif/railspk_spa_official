@@ -1,0 +1,2 @@
+# Sitemap location (Google ko naye, clean URLs bataane ke liye)
+Sitemap: https://therails.pk/sitemap.xml

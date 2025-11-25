@@ -7,8 +7,6 @@
     <link rel="icon" href="images/favicon.ico" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8566339481152239"
-     crossorigin="anonymous"></script>
 
     <meta name="google-adsense-account" content="ca-pub-8566339481152239">
 
@@ -20,6 +18,7 @@
 <meta property="og:url" content="https://therails.pk/reviews">
 <meta property="og:type" content="article">
 
+<!-- === FINAL FIXED SCHEMA MARKUP (Green Line, Pak Business, & Shalimar) === -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
@@ -65,10 +64,34 @@
           "name": "The RAILSPK"
         }
       }
+    },
+    { 
+      /* --- Shalimar Express Product/Review --- */
+      "@type": "Product",
+      "name": "Shalimar Express (AC Standard / Economy)",
+      "image": "https://therails.pk/images/feature-content-3.jpg", 
+      "description": "Popular inter-city passenger train service known for its long history and varied classes.",
+      "review": { 
+        "@type": "Review",
+        "name": "Shalimar Express Scorecard Review (Karachi to Lahore)", 
+        "datePublished": "2025-11-20", 
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "The RAILSPK"
+        }
+      }
     }
   ]
 }
 </script>
+<!-- === END OF FINAL FIXED SCHEMA MARKUP === -->
+
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL2CKH2MBL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -161,7 +184,6 @@
             </a>
             <nav class="hidden md:flex space-x-8">
                 <a href="/" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Home</a>
-                <a href="/blog" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Updates & News</a>
                 <a href="/routes" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Routes</a>
                 <a href="/reviews" class="nav-link text-lg font-medium text-rail-accent transition duration-300">Reviews</a> 
                 <a href="/about" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">About</a>
@@ -172,7 +194,6 @@
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-rail-dark absolute w-full shadow-lg">
             <a href="/" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Home</a>
-            <a href="/blog" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Updates & News</a>
             <a href="/routes" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Routes</a>
             <a href="/reviews" class="block py-3 px-4 text-lg font-medium text-rail-accent hover:bg-rail-secondary" onclick="toggleMenu()">Reviews</a>
             <a href="/about" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">About</a>
@@ -189,7 +210,8 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-                    <div id="scorecard-greenline" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden">
+                    <!-- --- REVIEW SCORECARD 1: Green Line --- -->
+                    <div id="scorecard-greenline" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden" data-rating="5">
                         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-6">
                             
                             <div class="md:col-span-3">
@@ -252,7 +274,10 @@
 
                         </div>
                     </div>
-                    <div id="scorecard-pakbusiness" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden">
+                    <!-- --- END OF SCORECARD 1 --- -->
+
+                    <!-- --- REVIEW SCORECARD 2: Pak Business Express --- -->
+                    <div id="scorecard-pakbusiness" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden" data-rating="4">
                         <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-6">
                             
                             <div class="md:col-span-3">
@@ -309,10 +334,69 @@
                                     <a class="next" onclick="moveSlide(1, 'scorecard-pakbusiness')">&#10095;</a>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- --- END OF SCORECARD 2 --- -->
+
+                    <!-- --- REVIEW SCORECARD 3: Shalimar Express (NEW) --- -->
+                    <div id="scorecard-shalimar" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden" data-rating="3">
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-6">
+                            
+                            <div class="md:col-span-3">
+                                <h3 class="text-2xl font-bold text-white mb-1 font-heading">Shalimar Express</h3>
+                                <p class="text-md text-rail-accent mb-4">All Classes</p>
+                                <p class="text-lg font-semibold text-gray-300">Overall Rating: <span class="stars">★★★★★<span class="stars-gray"></span></span></p>
+                                <ul class="text-gray-300 text-sm space-y-1 mt-4 border-t border-gray-700 pt-4">
+                                    <li class="flex justify-between"><span>Punctuality:</span> <span class="stars">★★★★★<span class="stars-gray"></span></span></li>
+                                    <li class="flex justify-between"><span>Cleanliness:</span> <span class="stars">★★★★★<span class="stars-gray"></span></span></li>
+                                    <li class="flex justify-between"><span>Food Quality:</span> <span class="stars">★★★★★<span class="stars-gray"></span></span></li>
+                                    <li class="flex justify-between"><span>Staff Behavior:</span> <span class="stars">★★★★★<span class="stars-gray"></span></span></li>
+                                </ul>
+                                <div class="flex gap-4 mt-4 text-sm">
+                                    <div class="w-full">
+                                        <h4 class="font-semibold text-green-400">✅ Pros</h4>
+                                        <ul class="list-disc list-inside text-gray-300 mt-1">
+                                            <li>Good overall value</li>
+                                            <li>Private management is attentive</li>
+                                            <li>All coaches are good</li>
+                                        </ul>
+                                    </div>
+                                    <div class="w-full">
+                                        <h4 class="font-semibold text-red-400">❌ Cons</h4>
+                                        <ul class="list-disc list-inside text-gray-300 mt-1">
+                                            <li>Internet / WiFi not 100% working during travel</li>
+                                            <li>No Complimentry food for Economy class</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <blockquote class="bg-gray-700/50 border-l-4 border-rail-accent p-3 rounded-r-lg mt-4">
+                                    <p class="text-gray-200 text-sm italic">
+                                        <span class="font-bold text-white">Verdict:</span> "Shalimar ek behtareen and Premium value option hai. Punctuality aur cleanliness achi hai."
+                                    </p>
+                                </blockquote>
+                            </div>
+                            
+                            <div class="md:col-span-2 flex flex-col gap-4">
+                                <div class="w-full aspect-video bg-gray-700 rounded-lg overflow-hidden shadow-lg border border-gray-700">
+                                    <!-- Using placeholder video -->
+                                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/UkRDtkKhGEo?si=WX3wEjDeg2YfUrZs" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                                <div class="slideshow-container w-full aspect-video bg-gray-900 rounded-lg overflow-hidden relative">
+                                    
+                                    <!-- NOTE: Using feature-content-3.jpg (Allama Iqbal Thumbnail) as a visual placeholder -->
+                                    <div class="slide"><img src="images/coming_soon.avif" class="w-full h-full object-contain cursor-pointer" alt="Shalimar Express 1" onclick="openImageModal(this.src)"></div> 
+                                    <div class="slide hidden"><img src="images/coming_soon.avif" class="w-full h-full object-contain cursor-pointer" alt="Shalimar Express 2" onclick="openImageModal(this.src)"></div>
+                                    
+                                    <a class="prev" onclick="moveSlide(-1, 'scorecard-shalimar')">&#10094;</a>
+                                    <a class="next" onclick="moveSlide(1, 'scorecard-shalimar')">&#10095;</a>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
-                    </div>
+                    <!-- --- END OF SCORECARD 3 --- -->
+
+                </div>
             </div>
         </section>
         </main>

@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# 1. Force all traffic to HTTPS://therails.pk (non-WWW)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^(.*)$ https://therails.pk/$1 [L,R=301]
+
+# 2. Add Charset Encoding (Fixes the warning)
+AddDefaultCharset UTF-8
+
+# 3. Remove .html Extension (Clean URLs)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]

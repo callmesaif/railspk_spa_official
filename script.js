@@ -112,7 +112,7 @@ async function fetchLatestLongVideo() {
     }
 
     try {
-        // Cache Buster ki zaroorat yahan kam hai, lekin consistency ke liye laga dete hain.
+        // Cache Buster 
         const cacheBuster = `&_t=${new Date().getTime()}`; 
         const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=5&type=video&videoDuration=long${cacheBuster}`;
         
@@ -150,7 +150,7 @@ async function fetchLatestLongVideo() {
 
 
 /**
- * (For index.html "Discover" section - **CACHE BUSTER ADDED**)
+ * (For index.html "Discover" section - CACHE BUSTER ADDED)
  */
 async function fetchFeaturedVideos() {
     const container = document.getElementById('video-cards-container');
@@ -164,7 +164,6 @@ async function fetchFeaturedVideos() {
     }
 
     try {
-        // === ZAROORI FIX: Cache Buster add kiya gaya hai ===
         const cacheBuster = `&_t=${new Date().getTime()}`; 
         const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=3&type=video&videoDuration=long${cacheBuster}`;
         
@@ -182,7 +181,6 @@ async function fetchFeaturedVideos() {
                 const shortTitle = title.length > 55 ? title.substring(0, 55) + '...' : title;
                 const desc = item.snippet.description.substring(0, 80) + '...';
 
-                // maxresdefault.jpg for full quality thumbnail
                 const thumbnail = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
                 const cardHtml = `
@@ -225,6 +223,7 @@ const playlistDatabase = {
     'khi-lhr': 'PLs_uju7fb5bcAC1y4S-wO04bL5II2ib2_',
     'rwp-khi': 'PLs_uju7fb5bfenUjQ3Zc6ZGvAMhtzby_N',
     'khi-roh': 'PLs_uju7fb5bfoF55xpJji7_cat6RW9V9O',
+    // === FIX APPLIED HERE ===
     'khi-mul': 'PLs_uju7fb5bdTicr1EhK2PPqRkctFCQ0p', 
 };
 

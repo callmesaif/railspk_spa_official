@@ -225,7 +225,7 @@ const playlistDatabase = {
     'khi-lhr': 'PLs_uju7fb5bcAC1y4S-wO04bL5II2ib2_',
     'rwp-khi': 'PLs_uju7fb5bfenUjQ3Zc6ZGvAMhtzby_N',
     'khi-roh': 'PLs_uju7fb5bfoF55xpJji7_cat6RW9V9O',
-    'khi-mul': 'PLs_uju7fb5bdTicr1EhK2PPqRkctFCQ0p' // Example Playlist ID for Karachi ↔ Multan
+    'khi-mul': 'PLs_uju7fb5bdTicr1EhK2PPqRkctFCQ0p', 
 };
 
 async function loadPlaylist(route) {

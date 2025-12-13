@@ -1,3 +1,64 @@
+// --- Theme Toggle Logic ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+const root = document.documentElement; // <html> element ko target karein
+
+// 1. Initial Load: Stored mode apply karein
+document.addEventListener('DOMContentLoaded', () => {
+    const storedTheme = localStorage.getItem('theme') || 'dark'; // Default to dark mode
+    if (storedTheme === 'light') {
+        root.classList.add('light-mode');
+        updateToggleButton(true);
+    } else {
+        updateToggleButton(false);
+    }
+    
+    // Yahan humne initial setup calls ko bhi move kar diya hai:
+    fetchFeaturedVideos();
+    startHeroSlideshow(); // Slideshow function call
+});
+
+// 2. Toggle Mode
+function toggleTheme() {
+    const isLight = root.classList.contains('light-mode');
+    
+    if (isLight) {
+        root.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+        updateToggleButton(false);
+    } else {
+        root.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+        updateToggleButton(true);
+    }
+}
+
+// 3. Button Icon Update (Sun/Moon)
+function updateToggleButton(isLightMode) {
+    if (!themeToggleBtn) return;
+    
+    // Clear old content
+    themeToggleBtn.innerHTML = '';
+    
+    // Sun Icon (for light mode)
+    const sunSVG = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>`;
+    
+    // Moon Icon (for dark mode)
+    const moonSVG = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>`;
+
+    if (isLightMode) {
+        themeToggleBtn.innerHTML = sunSVG;
+    } else {
+        themeToggleBtn.innerHTML = moonSVG;
+    }
+}
+
+// 4. Attach Event Listener
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', toggleTheme);
+}
+// --- End Theme Toggle Logic ---
+
+
 // --- Single Page Application Logic ---
 
 // 1. Mobile Menu Toggle
@@ -93,8 +154,9 @@ function closeImageModal() {
 
 
 // --- YouTube Integration Logic ---
-const YOUTUBE_API_KEY = 'AIzaSyAJySKdCS1_BNrvFAf6hGtvMbU0TLgO_7w'; // Aapki API key
-const CHANNEL_ID = 'UC0jiPBcE-2QbiBLt2m3MHSQ'; // Aapka YouTube channel ID
+// NOTE: Is placeholder API key ko apni asal key se change karna zaroori hai!
+const YOUTUBE_API_KEY = 'AIzaSyAJySKdCS1_BNrvFAf6hGtvMbU0TLgO_7w'; 
+const CHANNEL_ID = 'UC0jiPBcE-2QbiBLt2m3MHSQ'; 
 
 /**
  * (For "Watch Latest Vlogs" button)
@@ -112,7 +174,6 @@ async function fetchLatestLongVideo() {
     }
 
     try {
-        // Cache Buster 
         const cacheBuster = `&_t=${new Date().getTime()}`; 
         const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${YOUTUBE_API_KEY}&channelId=${CHANNEL_ID}&part=snippet,id&order=date&maxResults=5&type=video&videoDuration=long${cacheBuster}`;
         
@@ -150,7 +211,7 @@ async function fetchLatestLongVideo() {
 
 
 /**
- * (For index.html "Discover" section - CACHE BUSTER ADDED)
+ * (For index.html "Explore Our Journeys" section)
  */
 async function fetchFeaturedVideos() {
     const container = document.getElementById('video-cards-container');
@@ -177,7 +238,7 @@ async function fetchFeaturedVideos() {
 
             data.items.forEach(item => {
                 const videoId = item.id.videoId;
-                const title = item.snippet.title.replace(/'/g, "\\'"); // Quotes escape for JS call
+                const title = item.snippet.title.replace(/'/g, "\\'"); 
                 const shortTitle = title.length > 55 ? title.substring(0, 55) + '...' : title;
                 const desc = item.snippet.description.substring(0, 80) + '...';
 
@@ -212,18 +273,11 @@ async function fetchFeaturedVideos() {
 }
 
 
-// Initial setup call (UPDATED)
-document.addEventListener('DOMContentLoaded', () => {
-    fetchFeaturedVideos();
-});
-
-
 // --- Interactive Route Map Logic (PLAYLIST-BASED) ---
 const playlistDatabase = {
     'khi-lhr': 'PLs_uju7fb5bcAC1y4S-wO04bL5II2ib2_',
     'rwp-khi': 'PLs_uju7fb5bfenUjQ3Zc6ZGvAMhtzby_N',
     'khi-roh': 'PLs_uju7fb5bfoF55xpJji7_cat6RW9V9O',
-    // === FIX APPLIED HERE ===
     'khi-mul': 'PLs_uju7fb5bdTicr1EhK2PPqRkctFCQ0p', 
 };
 
@@ -281,7 +335,7 @@ async function loadPlaylist(route) {
     }
 }
 
-// --- NEW: Photo Gallery Function (Legacy from previous step, kept for changeImage) ---
+// --- Image Gallery/Slideshow Functions ---
 function changeImage(thumbnailElement, mainImageId) {
     const newSrc = thumbnailElement.src;
     const mainImage = document.getElementById(mainImageId);
@@ -294,7 +348,6 @@ function changeImage(thumbnailElement, mainImageId) {
     thumbnailElement.classList.add('thumbnail-active');
 }
 
-// --- Slideshow Function (THE FIX) ---
 function moveSlide(n, scorecardId) {
     const slides = document.querySelectorAll(`#${scorecardId} .slide`);
     if (slides.length === 0) return; 
@@ -318,4 +371,30 @@ function moveSlide(n, scorecardId) {
     }
 
     slides[newIndex].classList.remove('hidden');
+}
+
+
+// --- Hero Slideshow Logic ---
+function startHeroSlideshow() {
+    const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length < 2) return; 
+
+    let currentSlide = 0;
+
+    function nextSlide() {
+        // Current slide ko hidden karein
+        slides[currentSlide].classList.remove('active');
+
+        // Next slide index calculate karein
+        currentSlide = (currentSlide + 1) % slides.length;
+
+        // Next slide ko show karein
+        slides[currentSlide].classList.add('active');
+    }
+    
+    // Pehli slide ko active set karein (in case DOMContentLoaded ne na kiya ho)
+    slides[currentSlide].classList.add('active');
+
+    // Har 5 seconds (5000 milliseconds) ke baad slide change karein
+    setInterval(nextSlide, 5000); 
 }

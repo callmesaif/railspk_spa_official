@@ -4,29 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAILSPK - Your Hub for Pakistan Railways</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico"> 
+    <link rel="icon" href="images/favicon.ico" type="image/png">
+    
     <link rel="apple-touch-icon" href="images/favicon.ico">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8566339481152239"
-     crossorigin="anonymous"></script>
 
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css"> 
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8566339481152239" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-8566339481152239">
 
     <meta name="description" content="Pakistan Railways ke behtareen vlogs, reviews, aur updates ka hub. Green Line, Karakoram, aur deegar trains ka tafseeli jaiza dekhein.">
-<link rel="canonical" href="https://therails.pk/">
-
-<meta property="og:title" content="The RAILSPK - Pakistan Railways Vlogs, Reviews & Updates">
-<meta property="og:description" content="Pakistan Railways ke behtareen vlogs, reviews, aur updates ka hub. Green Line, Karakoram, aur deegar trains ka tafseeli jaiza dekhein.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://therails.pk/">
-<meta property="og:image" content="https://therails.pk/images/og-thumbnail.png">
-<meta property="og:site_name" content="The RAILSPK">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@TheRAILSPK">
-<meta name="twitter:creator" content="@TheRAILSPK">
+    <link rel="canonical" href="https://therails.pk/">
     
+    <meta property="og:title" content="RAILSPK - Your Hub for Pakistan Railways">
+    <meta property="og:description" content="Pakistan Railways ke behtareen vlogs, reviews, aur updates ka hub.">
+    <meta property="og:url" content="https://therails.pk/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://therails.pk/images/og-image.jpg"> 
+
     <script>
         tailwind.config = {
             theme: {
@@ -46,144 +42,188 @@
             }
         }
     </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
+        html { scroll-behavior: smooth; }
+
+        /* Hero Section Slideshow (Ab sirf right column ke liye use hoga) */
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            /* Dark Overlay for Text Readability */
+            background-blend-mode: multiply;
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        /* Nav Link Active State (for routes/reviews/about) */
+        .nav-link.active {
+            color: #4f46e5; /* rail-accent */
+            font-weight: 600;
+        }
+        
+        /* --- Light/Dark Mode Overrides --- */
+        /* Dark Mode is default, but we map classes to variables for consistency */
+        :root {
+            --color-bg-primary: #111827; 
+            --color-bg-secondary: #1f2937; 
+            --color-bg-tertiary: #374151; 
+            --color-text-primary: #d1d5db; 
+            --color-text-heading: #ffffff;
+            --color-text-accent: #4f46e5; 
+            --color-border: #374151;
+        }
+
+        .light-mode {
+            /* Light Mode Variables */
+            --color-bg-primary: #f3f4f6;
+            --color-bg-secondary: #ffffff;
+            --color-bg-tertiary: #e5e7eb;
+            --color-text-primary: #111827;
+            --color-text-heading: #1f2937;
+            --color-text-accent: #6366f1;
+            --color-border: #d1d5db;
+        }
+
+        /* Mapping Tailwind classes to CSS variables */
+        body { background-color: var(--color-bg-primary) !important; color: var(--color-text-primary) !important; }
+        .bg-rail-dark { background-color: var(--color-bg-primary) !important; }
+        .bg-rail-secondary { background-color: var(--color-bg-tertiary) !important; }
+        .text-rail-text { color: var(--color-text-primary) !important; }
+        .text-white { color: var(--color-text-heading) !important; }
+        .text-gray-300, .text-gray-400 { color: var(--color-text-primary) !important; }
+        .bg-gray-800 { background-color: var(--color-bg-secondary) !important; }
+        .border-gray-700 { border-color: var(--color-border) !important; }
+        
+        /* Shadows adjustment in Light Mode */
+        .light-mode .shadow-xl {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05); 
+        }
+    </style>
     
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QL2CKH2MBL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL2CKH2MBL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QL2CKH2MBL');
+    </script>
 
-  gtag('config', 'G-QL2CKH2MBL');
-</script>
-
-    <script src="script.js" defer></script> </head>
+    <script src="script.js" defer></script> 
+</head>
 <body class="bg-rail-dark text-rail-text font-sans antialiased">
 
     <header class="sticky top-0 z-50 bg-rail-dark/95 backdrop-blur-sm shadow-xl">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
-            <a href="index.html" class="text-3xl font-extrabold text-white tracking-wide font-heading">
+            <a href="/" class="text-3xl font-extrabold text-white tracking-wide font-heading">
                 The <span class="text-rail-accent">RAILSPK</span>
             </a>
             <nav class="hidden md:flex space-x-8">
-                <a href="/" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Home</a>
-                <a href="#discover" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Discover</a>
-                <a href="/routes" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Routes</a>
+                <a href="/" class="nav-link text-lg font-medium text-rail-accent transition duration-300">Home</a>
                 <a href="/reviews" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">Reviews</a>
                 <a href="/about" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">About</a>
             </nav>
+            
+            <button id="theme-toggle" class="p-2 text-rail-text hover:text-rail-accent rounded-md focus:outline-none hidden md:block" aria-label="Toggle dark/light mode">
+                </button>
+
             <button class="md:hidden p-2 text-rail-text hover:text-rail-accent rounded-md focus:outline-none" onclick="toggleMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-rail-dark absolute w-full shadow-lg">
-            <a href="/" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent transition duration-200" onclick="toggleMenu()">Home</a>
-            <a href="#discover" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent transition duration-200" onclick="toggleMenu()">Discover</a>
-            <a href="/routes" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent transition duration-200" onclick="toggleMenu()">Routes</a>
-            <a href="/reviews" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent transition duration-200" onclick="toggleMenu()">Reviews</a>
-            <a href="/about" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent transition duration-200" onclick="toggleMenu()">About</a>
+            <a href="/" class="block py-3 px-4 text-lg font-medium text-rail-accent hover:bg-rail-secondary" onclick="toggleMenu()">Home</a>
+            <a href="/reviews" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">Reviews</a>
+            <a href="/about" class="block py-3 px-4 text-lg font-medium text-rail-text hover:bg-rail-secondary hover:text-rail-accent" onclick="toggleMenu()">About</a>
         </div>
     </header>
 
     <main>
-        <section id="home" class="hero-background relative min-h-[600px] flex items-center pt-20 pb-16">
-    <div class="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-left text-white">
-        
-        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight font-heading">
-            All Aboard! <br>Your Hub for <span class="text-rail-accent">Pakistan Railways</span>.
-        </h1>
-        
-        <p class="text-xl sm:text-2xl text-gray-300 max-w-2xl mb-6">
-            Dive into the scenic routes, detailed reviews, and rich history of Pakistan's trains.
-        </p>
-
-        <div class="bg-gray-800/70 backdrop-blur-sm p-6 rounded-lg border-l-4 border-rail-accent shadow-xl max-w-3xl mb-8">
-            <p class="text-lg text-gray-300 mb-4">
-                Welcome to your central <b>Hub</b> for everything related to <b>Pakistan Railways</b>. Humara maqsad aap ko sirif latest updates dena nahi, balke har bade route aur train ke safar ka tafseeli (detailed) jaiza pesh karna hai. Hum Green Line Express, Karakoram, aur deegar trains ke <b>Vlogs</b> aur <b>Reviews</b> share karte hain, jismein hum cleanliness, punctuality, aur food quality par mukammal focus karte hain.
-            </p>
-            <p class="text-lg text-gray-300 mb-4">
-                <b>The RAILSPK</b> ek aisi community hai jo Pakistan ke rail network ki khoobsurti aur ahmiyat ko highlight karti hai. Humari site par aap detailed scorecards dekhen gey, jahan har train ki performance mukammal aur wazeh tarah se bayan ki gayi hai. Hamara Hub aap ki railfan community ka hissa hai. Aap yahan se latest long vlogs dekhen aur apni agli Pakistan Railways journey ke liye taiyyari karein.
-            </p>
-            <p class="text-gray-400 mb-0">
-                Humara mission aap ki railfan community ko ek jagah jama karna hai. Ab <b>All Aboard!</b> Join the railfan community and explore Pakistan's most historical routes with us.
-            </p>
-        </div>
-        <button class="px-8 py-3 bg-rail-accent text-white font-bold rounded-full hover:bg-rail-light-blue transition duration-300 shadow-lg shadow-rail-accent/50 flex items-center gap-2" onclick="fetchLatestLongVideo()">
-            Watch Latest Vlogs
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.82V10.18a1 1 0 011.555-.832l3.197 2.132a1 1 0 010 1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </button>
-    </div>
-</section>
-
-                <section id="discover" class="py-16 md:py-24 bg-rail-dark">
-                    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 class="text-4xl font-bold text-center mb-12 text-white font-heading">Our Latest Content</h2>
-                <div id="video-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <p class="text-gray-400 text-center col-span-3">
-                        Loading latest vlogs from our channel...
+        <section id="home" class="relative pt-20 pb-16">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+                
+                <div class="w-full md:w-6/12 lg:w-7/12 text-left mb-10 md:mb-0">
+                    
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 leading-tight font-heading max-w-4xl text-white">
+                        All Aboard! <br>Your Hub for <span class="text-rail-accent">Pakistan Railways</span>.
+                    </h1>
+                    
+                    <p class="text-xl sm:text-2xl text-gray-300 max-w-2xl mb-10">
+                        Dive into the scenic routes, detailed reviews, and rich history of Pakistan's trains.
                     </p>
-                </div>
-            </div>
-        </section>
 
-        <section id="about" class="py-16 bg-gray-800 border-t border-gray-700">
-            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                    <div class="p-6">
-                        <h3 class="text-4xl font-extrabold text-rail-accent font-heading">10+</h3>
-                        <p class="text-xl text-white">Routes Covered</p>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-4xl font-extrabold text-rail-accent font-heading">5K+</h3>
-                        <p class="text-xl text-white">Subscribers</p>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-4xl font-extrabold text-rail-accent font-heading">2M+</h3>
-                        <p class="text-xl text-white">Total Views</p>
-                    </div>
+                    <a href="/routes" class="px-8 py-3 bg-rail-accent text-white font-bold rounded-full hover:bg-rail-light-blue transition duration-300 shadow-lg shadow-rail-accent/50 inline-flex items-center gap-2">
+                        Explore Routes & Reviews
+                    </a>
                 </div>
 
-                <div class="mt-10 max-w-2xl mx-auto">
-                    <h2 class="text-3xl font-bold text-white mb-4 font-heading text-center">Have a question? Reach out!</h2>
-                    <div class="flex justify-center">
-                        
-                        <a href="https://wa.me/+923198550419?text=Hello%20RailPK!%20I%20have%20a%20question%20from%20the%20website."
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           class="px-8 py-3 bg-rail-accent text-white font-bold rounded-lg hover:bg-rail-light-blue transition duration-300 shadow-lg shadow-rail-accent/50 inline-flex items-center gap-3">
-                            
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.06 22L7.31 20.62C8.75 21.41 10.37 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 6.46 17.5 2 12.04 2M12.04 20.13C10.52 20.13 9.04 19.68 7.78 18.89L7.32 18.61L3.8 19.54L4.75 16.14L4.46 15.68C3.61 14.38 3.16 12.87 3.16 11.29C3.16 7.04 7.21 3 12.04 3C16.87 3 20.92 7.04 20.92 11.29C20.92 15.54 16.87 20.13 12.04 20.13M17.48 14.39C17.22 14.26 16.12 13.72 15.88 13.62C15.64 13.52 15.47 13.47 15.31 13.73C15.14 13.99 14.63 14.6 14.47 14.77C14.31 14.93 14.14 14.95 13.88 14.82C13.62 14.69 12.79 14.41 11.79 13.51C11.01 12.81 10.46 11.94 10.33 11.71C10.2 11.48 10.31 11.36 10.42 11.25C10.53 11.14 10.66 10.97 10.78 10.84C10.9 10.71 10.95 10.61 11.05 10.41C11.15 10.21 11.1 10.04 11.02 9.88C10.95 9.71 10.45 8.47 10.23 7.9C10.01 7.33 9.79 7.4 9.61 7.39C9.43 7.39 9.26 7.39 9.09 7.39C8.92 7.39 8.67 7.44 8.45 7.7C8.23 7.96 7.72 8.44 7.72 9.54C7.72 10.64 8.48 11.69 8.6 11.86C8.73 12.02 9.81 13.68 11.38 14.44C12.94 15.2 13.28 15.34 13.59 15.44C14.15 15.61 14.61 15.58 14.97 15.53C15.37 15.47 16.42 14.91 16.63 14.3C16.85 13.69 16.85 13.14 16.77 13.01C16.7 12.89 16.53 12.83 16.27 12.7Z"/>
-                            </svg>
-                            Chat with us on WhatsApp
-                        </a>
+                <div class="w-full md:w-6/12 lg:w-5/12 aspect-[16/10] relative overflow-hidden rounded-xl shadow-2xl">
+                    <div id="hero-slideshow-container" class="w-full h-full relative">
+                        <div class="hero-slide active" style="background-image: url('images/train_background.jpg');"></div>
+                        <div class="hero-slide" style="background-image: url('images/train_background2.jpeg');"></div>
+                        <div class="hero-slide" style="background-image: url('images/train_background3.jpeg');"></div>
+                        <div class="hero-slide" style="background-image: url('images/train_background4.jpeg');"></div>
+                        <div class="hero-slide" style="background-image: url('images/train_background5.jpeg');"></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="discover" class="py-16 md:py-24">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-12 font-heading text-center">
+                    Explore Our <span class="text-rail-accent">Journeys</span>
+                </h2>
+                <div id="video-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <p class="text-gray-400 text-center col-span-3 py-10">Loading latest vlogs...</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="routes" class="py-16 md:py-24 bg-rail-secondary">
+            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-12 font-heading text-center">
+                    Interactive Route <span class="text-rail-accent">Map</span>
+                </h2>
+                
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('khi-lhr', this)">Karachi ↔ Lahore</button>
+                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('rwp-khi', this)">Rawalpindi ↔ Karachi</button>
+                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('khi-roh', this)">Karachi ↔ Rohri</button>
+                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('khi-mul', this)">Karachi ↔ Multan</button>
+                    </div>
+
+                <div id="route-video-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <p class="text-gray-400 text-center col-span-full py-10">Upar diye gaye routes mein se koi aik chunein taake hum uss safar ke vlogs dikha saken.</p>
+                </div>
+            </div>
+        </section>
+        
     </main>
 
     <footer class="bg-rail-dark py-8 border-t border-gray-700">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
              <div class="flex justify-center space-x-6 mb-6">
-            
                 <a href="https://www.youtube.com/@therailspk" target="_blank" class="text-gray-400 hover:text-red-600 transition duration-300" aria-label="YouTube Channel">
-                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.615 3.195a2.126 2.126 0 00-1.5-.735C16.853 2 12 2 12 2s-4.853 0-6.115.46a2.126 2.126 0 00-1.5.735A2.126 2.126 0 004 5.378v13.244a2.126 2.126 0 001.077 1.838c.642.483 5.48.483 6.115.483s5.473 0 6.115-.483a2.126 2.126 0 001.077-1.838V5.378a2.126 2.126 0 00-.735-1.838zM9.75 16.5l5.25-3.5-5.25-3.5v7z"/>
-                    </svg>
+                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.195a2.126 2.126 0 00-1.5-.735C16.853 2 12 2 12 2s-4.853 0-6.115.46a2.126 2.126 0 00-1.5.735A2.126 2.126 0 004 5.378v13.244a2.126 2.126 0 001.077 1.838c.642.483 5.48.483 6.115.483s5.473 0 6.115-.483a2.126 2.126 0 001.077-1.838V5.378a2.126 2.126 0 00-.735-1.838zM9.75 16.5l5.25-3.5-5.25-3.5v7z"/></svg>
                 </a>
-                
                 <a href="https://facebook.com/therailspk" target="_blank" class="text-gray-400 hover:text-blue-600 transition duration-300" aria-label="Facebook Page">
-                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14 13.5h2.5L17 9h-3v-2c0-1.03 0-2 .6-2.92.35-.6.8-1.08 1.4-1.48C16.5 2 17.5 2 19 2h3v4h-3c-1.86 0-3 .24-3 2v3h6.5l-1 4H16v8h-4v-8H8v-4h4V6.5z"/>
-                    </svg>
+                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5L17 9h-3v-2c0-1.03 0-2 .6-2.92.35-.6.8-1.08 1.4-1.48C16.5 2 17.5 2 19 2h3v4h-3c-1.86 0-3 .24-3 2v3h6.5l-1 4H16v8h-4v-8H8v-4h4V6.5z"/></svg>
                 </a>
-                
                 <a href="https://instagram.com/therailspk" target="_blank" class="text-gray-400 hover:text-pink-600 transition duration-300" aria-label="Instagram Profile">
-                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.645.07 4.85s-.012 3.585-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.264-.149-4.771-1.677-4.919-4.919-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072C2.79 0 1.144 1.171.071 2.298.01 2.502 0 2.827 0 6.008V18c0 3.181.01 3.506.071 3.712.112.385.27.755.456 1.096.223.419.497.771.84.996.343.224.717.398 1.102.508.385.11.77.164 1.157.172 1.28.058 1.688.072 4.947.072s3.668-.014 4.948-.072c3.245-.147 4.775-1.69 4.923-4.923.058-1.265.07-1.673.07-4.923s-.014-3.667-.072-4.947c-.147-3.24-1.67-4.77-4.923-4.919-1.265-.058-1.673-.07-4.923-.07zm0 5.838c3.403 0 6.162 2.759 6.162 6.162S15.403 18.162 12 18.162 5.838 15.403 5.838 12c0-3.403 2.759-6.162 6.162-6.162zm0 2.163c-2.204 0-4 1.796-4 4s1.796 4 4 4 4-1.796 4-4-1.796-4-4-4zm6.406-5.432c-.768 0-1.39.622-1.39 1.39s.622 1.39 1.39 1.39 1.39-.622 1.39-1.39-.622-1.39-1.39-1.39z"/>
-                    </svg>
+                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.645.07 4.85s-.012 3.585-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.264-.149-4.771-1.677-4.919-4.919-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072C2.79 0 1.144 1.171.071 2.298.01 2.502 0 2.827 0 6.008V18c0 3.181.01 3.506.071 3.712.112.385.27.755.456 1.096.223.419.497.771.84.996.343.224.717.398 1.102.508.385.11.77.164 1.157.172 1.28.058 1.688.072 4.947.072s3.668-.014 4.948-.072c3.245-.147 4.775-1.69 4.923-4.923.058-1.265.07-1.673.07-4.923s-.014-3.667-.072-4.947c-.147-3.24-1.67-4.77-4.923-4.919-1.265-.058-1.673-.07-4.923-.07zm0 5.838c3.403 0 6.162 2.759 6.162 6.162S15.403 18.162 12 18.162 5.838 15.403 5.838 12c0-3.403 2.759-6.162 6.162-6.162zm0 2.163c-2.204 0-4 1.796-4 4s1.796 4 4 4 4-1.796 4-4-1.796-4-4-4zm6.406-5.432c-.768 0-1.39.622-1.39 1.39s.622 1.39 1.39 1.39 1.39-.622 1.39-1.39-.622-1.39-1.39-1.39z"/></svg>
                 </a>
             </div>
             
@@ -196,19 +236,13 @@
         </div>
     </footer>
 
-    <div id="latest-video-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden transition-opacity duration-300 items-center justify-center p-4" onclick="closeModal('latest-video-modal')">
-        <div class="bg-gray-900 rounded-lg p-6 max-w-4xl w-full" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-2xl font-bold text-rail-accent">Latest Vlogs from The RAILSPK</h3>
-                <button class="text-gray-400 hover:text-rail-accent transition" onclick="closeModal('latest-video-modal')">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            <div id="latest-video-embed" class="w-full aspect-video bg-gray-700 flex items-center justify-center rounded-md">
-                <p class="text-gray-300">Loading your latest vlog...</p>
+    <div id="latest-video-modal" class="fixed inset-0 bg-black bg-opacity-90 z-[900] hidden items-center justify-center p-4" onclick="closeModal('latest-video-modal')">
+        <div class="relative w-full max-w-4xl h-full max-h-[80vh]" onclick="event.stopPropagation()">
+            <button class="absolute top-[-40px] right-2 text-white text-4xl font-bold opacity-80 hover:opacity-100 transition" onclick="closeModal('latest-video-modal')">&times;</button>
+            <div id="latest-video-embed" class="w-full h-full bg-gray-900 rounded-md flex items-center justify-center">
+                <p class="text-gray-300 p-6">Loading your latest vlog...</p>
             </div>
         </div>
     </div>
-
 </body>
 </html>

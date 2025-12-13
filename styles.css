@@ -1,92 +1,53 @@
-/* --- 1. Light/Dark Mode Variables and Setup --- */
+/* --- 1. Dark Mode Variables (Permanent) --- */
 
-/* Default Mode: DARK MODE */
 :root {
     /* Backgrounds */
-    --color-bg-primary: #111827;   /* rail-dark / Body Background */
-    --color-bg-secondary: #1f2937; /* Card/Container BG (gray-800) */
-    --color-bg-tertiary: #374151;  /* rail-secondary / Route Section BG */
+    --color-bg-primary: #111827;   
+    --color-bg-secondary: #1f2937; 
+    --color-bg-tertiary: #374151;  
     
     /* Text & Colors */
-    --color-text-primary: #d1d5db; /* rail-text / Default Text (gray-300/400) */
-    --color-text-heading: #ffffff; /* White Headings (H1/H2) */
-    --color-text-accent: #4f46e5;  /* rail-accent / Purple Accent */
+    --color-text-primary: #d1d5db; 
+    --color-text-heading: #ffffff; 
+    --color-text-accent: #4f46e5;  
     
     /* Borders & Lines */
-    --color-border: #374151;       /* gray-700 / Dark Border */
-}
-
-/* Light Mode Definition (Fixing contrast by making text nearly black) */
-.light-mode {
-    /* Backgrounds */
-    --color-bg-primary: #f3f4f6;   /* Light gray/Off-white BG */
-    --color-bg-secondary: #ffffff; /* White Card BG */
-    --color-bg-tertiary: #e5e7eb;  /* Light Secondary BG */
-    
-    /* Text & Colors (Made substantially darker for contrast) */
-    --color-text-primary: #111827; /* Near-black for main text */
-    --color-text-heading: #1f2937; /* Very dark gray for headings */
-    --color-text-accent: #6366f1;  
-    
-    /* Borders & Lines */
-    --color-border: #d1d5db;
+    --color-border: #374151;       
 }
 
 
-/* --- 2. Dynamic Class Overrides (Tailwind Mapping) --- */
-/* Increased stability with !important for all swapped colors. */
+/* --- 2. Global Reset and Utility Overrides --- */
 
-/* Body/Primary Background */
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-primary); } 
+::-webkit-scrollbar-thumb { background: var(--color-text-accent); border-radius: 4px; } 
+html { scroll-behavior: smooth; }
+
+/* Applying variables directly to body tag and forcing dark colors */
 body { 
     background-color: var(--color-bg-primary) !important; 
     color: var(--color-text-primary) !important; 
 }
-.bg-rail-dark { background-color: var(--color-bg-primary) !important; }
 
-/* Secondary Background (e.g., Route Section, Card/Scorecard BG) */
+/* --- 3. Tailwind Class Mappings (For consistency) --- */
+
+.bg-rail-dark { background-color: var(--color-bg-primary) !important; }
 .bg-rail-secondary { background-color: var(--color-bg-tertiary) !important; }
 .bg-gray-800 { background-color: var(--color-bg-secondary) !important; }
 
 /* Text Colors */
 .text-rail-text { color: var(--color-text-primary) !important; }
 .text-white { color: var(--color-text-heading) !important; }
-.text-gray-300, .text-gray-400 { 
-    /* Forcing these standard Tailwind gray classes to follow the theme */
-    color: var(--color-text-primary) !important; 
-}
+.text-gray-300, .text-gray-400 { color: var(--color-text-primary) !important; }
 .text-rail-accent { color: var(--color-text-accent) !important; }
 
-/* Borders & Shadow elements */
+/* Borders & Shadows */
 .border-gray-700 { border-color: var(--color-border) !important; }
-.shadow-xl { 
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); 
-}
-.light-mode .shadow-xl {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05); 
-}
 
 
-/* --- 3. Custom Styles --- */
+/* --- 4. Hero Slideshow Styles (Complex Animation) --- */
 
-/* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--color-bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--color-text-accent); border-radius: 4px; }
-html { scroll-behavior: smooth; }
-
-/* Hero Section Slideshow */
-.hero-background-slideshow {
-    position: relative;
-    overflow: hidden;
-    min-height: 600px;
-}
-#hero-slideshow-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 .hero-slide {
     position: absolute;
     top: 0;
@@ -97,41 +58,29 @@ html { scroll-behavior: smooth; }
     transition: opacity 1.5s ease-in-out;
     background-size: cover;
     background-position: center;
-    /* Dark Overlay for Text Readability */
+    /* Dark Overlay is permanent for max readability */
     background-blend-mode: multiply;
     background-color: rgba(0, 0, 0, 0.4); 
-}
-
-/* Light Mode mein Image par halka safed (white) overlay daalna */
-.light-mode .hero-slide {
-    background-color: rgba(255, 255, 255, 0.2); 
-    background-blend-mode: screen; /* Isse image halki ho jayegi */
 }
 
 .hero-slide.active {
     opacity: 1;
 }
 
-/* Nav Link Active State (Home page par Home link active rahega) */
+
+/* --- 5. Component Specific Styles --- */
+
+/* Nav Link Active State */
 .nav-link.active {
     color: var(--color-text-accent);
     font-weight: 600;
 }
 
-
-/* Rating stars (yellow color) */
+/* Rating stars */
 .stars {
-    color: #f59e0b; /* Yellow/Amber color */
+    color: #f59e0b; 
     font-size: 1.1rem;
 }
 .stars-gray {
-    color: var(--color-border); /* Border color/Gray color for un-filled stars */
-}
-
-
-/* Route buttons active state */
-.route-button.active {
-    background-color: var(--color-text-accent) !important;
-    border-color: var(--color-text-accent) !important;
-    color: var(--color-text-heading) !important;
+    color: var(--color-border);
 }

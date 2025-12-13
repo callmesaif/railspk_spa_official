@@ -42,76 +42,7 @@
             }
         }
     </script>
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1e293b; }
-        ::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 4px; }
-        html { scroll-behavior: smooth; }
-
-        /* Hero Section Slideshow (Ab sirf right column ke liye use hoga) */
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            background-size: cover;
-            background-position: center;
-            /* Dark Overlay for Text Readability */
-            background-blend-mode: multiply;
-            background-color: rgba(0, 0, 0, 0.4); 
-        }
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        /* Nav Link Active State (for routes/reviews/about) */
-        .nav-link.active {
-            color: #4f46e5; /* rail-accent */
-            font-weight: 600;
-        }
-        
-        /* --- Light/Dark Mode Overrides --- */
-        /* Dark Mode is default, but we map classes to variables for consistency */
-        :root {
-            --color-bg-primary: #111827; 
-            --color-bg-secondary: #1f2937; 
-            --color-bg-tertiary: #374151; 
-            --color-text-primary: #d1d5db; 
-            --color-text-heading: #ffffff;
-            --color-text-accent: #4f46e5; 
-            --color-border: #374151;
-        }
-
-        .light-mode {
-            /* Light Mode Variables */
-            --color-bg-primary: #f3f4f6;
-            --color-bg-secondary: #ffffff;
-            --color-bg-tertiary: #e5e7eb;
-            --color-text-primary: #111827;
-            --color-text-heading: #1f2937;
-            --color-text-accent: #6366f1;
-            --color-border: #d1d5db;
-        }
-
-        /* Mapping Tailwind classes to CSS variables */
-        body { background-color: var(--color-bg-primary) !important; color: var(--color-text-primary) !important; }
-        .bg-rail-dark { background-color: var(--color-bg-primary) !important; }
-        .bg-rail-secondary { background-color: var(--color-bg-tertiary) !important; }
-        .text-rail-text { color: var(--color-text-primary) !important; }
-        .text-white { color: var(--color-text-heading) !important; }
-        .text-gray-300, .text-gray-400 { color: var(--color-text-primary) !important; }
-        .bg-gray-800 { background-color: var(--color-bg-secondary) !important; }
-        .border-gray-700 { border-color: var(--color-border) !important; }
-        
-        /* Shadows adjustment in Light Mode */
-        .light-mode .shadow-xl {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05); 
-        }
-    </style>
+    <style></style>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QL2CKH2MBL"></script>
     <script>
@@ -136,9 +67,6 @@
                 <a href="/about" class="nav-link text-lg font-medium text-rail-text hover:text-rail-accent transition duration-300">About</a>
             </nav>
             
-            <button id="theme-toggle" class="p-2 text-rail-text hover:text-rail-accent rounded-md focus:outline-none hidden md:block" aria-label="Toggle dark/light mode">
-                </button>
-
             <button class="md:hidden p-2 text-rail-text hover:text-rail-accent rounded-md focus:outline-none" onclick="toggleMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
@@ -156,7 +84,7 @@
                 
                 <div class="w-full md:w-6/12 lg:w-7/12 text-left mb-10 md:mb-0">
                     
-                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 leading-tight font-heading max-w-4xl text-white">
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 leading-tight font-heading text-white">
                         All Aboard! <br>Your Hub for <span class="text-rail-accent">Pakistan Railways</span>.
                     </h1>
                     
@@ -164,8 +92,8 @@
                         Dive into the scenic routes, detailed reviews, and rich history of Pakistan's trains.
                     </p>
 
-                    <a href="/routes" class="px-8 py-3 bg-rail-accent text-white font-bold rounded-full hover:bg-rail-light-blue transition duration-300 shadow-lg shadow-rail-accent/50 inline-flex items-center gap-2">
-                        Explore Routes & Reviews
+                    <a href="/reviews" class="px-8 py-3 bg-rail-accent text-white font-bold rounded-full hover:bg-rail-light-blue transition duration-300 shadow-lg shadow-rail-accent/50 inline-flex items-center gap-2">
+                        View All Reviews
                     </a>
                 </div>
 
@@ -183,35 +111,35 @@
 
         <section id="discover" class="py-16 md:py-24">
             <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-12 font-heading text-center">
-                    Explore Our <span class="text-rail-accent">Journeys</span>
-                </h2>
+                
+                <div class="flex flex-col sm:flex-row justify-between items-center mb-12">
+                    <h2 class="text-4xl sm:text-5xl font-bold text-white font-heading text-center sm:text-left mb-4 sm:mb-0">
+                        Explore Our <span class="text-rail-accent">Journeys</span>
+                    </h2>
+
+                    <div class="w-full sm:w-auto">
+                        <label for="video-filter" class="sr-only">Filter by Duration</label>
+                        <select id="video-filter" class="w-full sm:w-48 px-4 py-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:ring-rail-accent focus:border-rail-accent transition duration-300">
+                            <option value="long">Vlogs (Long Videos)</option>
+                            <option value="medium">Reviews (Medium Clips)</option>
+                            <option value="short">Shorts (Shorts/Snaps)</option>
+                            <option value="any">All Videos (Any Duration)</option>
+                        </select>
+                    </div>
+                </div>
                 <div id="video-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <p class="text-gray-400 text-center col-span-3 py-10">Loading latest vlogs...</p>
                 </div>
-            </div>
-        </section>
 
-        <section id="routes" class="py-16 md:py-24 bg-rail-secondary">
-            <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-12 font-heading text-center">
-                    Interactive Route <span class="text-rail-accent">Map</span>
-                </h2>
-                
-                <div class="flex flex-wrap justify-center gap-4 mb-10">
-                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('khi-lhr', this)">Karachi ↔ Lahore</button>
-                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('rwp-khi', this)">Rawalpindi ↔ Karachi</button>
-                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('khi-roh', this)">Karachi ↔ Rohri</button>
-                    <button class="route-button px-6 py-3 bg-gray-800 text-white border border-rail-accent rounded-lg hover:bg-rail-accent transition duration-300" onclick="loadPlaylist('khi-mul', this)">Karachi ↔ Multan</button>
-                    </div>
-
-                <div id="route-video-results" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <p class="text-gray-400 text-center col-span-full py-10">Upar diye gaye routes mein se koi aik chunein taake hum uss safar ke vlogs dikha saken.</p>
+                <div class="text-center mt-12">
+                    <button id="load-more-btn" class="px-8 py-3 bg-rail-accent text-white font-bold rounded-full hover:bg-rail-light-blue transition duration-300 shadow-lg shadow-rail-accent/50 inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                        Load More Journeys
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 12h16m-7 7l7-7-7-7"></path></svg>
+                    </button>
                 </div>
-            </div>
+                </div>
         </section>
-        
-    </main>
+        </main>
 
     <footer class="bg-rail-dark py-8 border-t border-gray-700">
         <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
@@ -223,7 +151,7 @@
                     <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M14 13.5h2.5L17 9h-3v-2c0-1.03 0-2 .6-2.92.35-.6.8-1.08 1.4-1.48C16.5 2 17.5 2 19 2h3v4h-3c-1.86 0-3 .24-3 2v3h6.5l-1 4H16v8h-4v-8H8v-4h4V6.5z"/></svg>
                 </a>
                 <a href="https://instagram.com/therailspk" target="_blank" class="text-gray-400 hover:text-pink-600 transition duration-300" aria-label="Instagram Profile">
-                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.645.07 4.85s-.012 3.585-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.264-.149-4.771-1.677-4.919-4.919-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072C2.79 0 1.144 1.171.071 2.298.01 2.502 0 2.827 0 6.008V18c0 3.181.01 3.506.071 3.712.112.385.27.755.456 1.096.223.419.497.771.84.996.343.224.717.398 1.102.508.385.11.77.164 1.157.172 1.28.058 1.688.072 4.947.072s3.668-.014 4.948-.072c3.245-.147 4.775-1.69 4.923-4.923.058-1.265.07-1.673.07-4.923s-.014-3.667-.072-4.947c-.147-3.24-1.67-4.77-4.923-4.919-1.265-.058-1.673-.07-4.923-.07zm0 5.838c3.403 0 6.162 2.759 6.162 6.162S15.403 18.162 12 18.162 5.838 15.403 5.838 12c0-3.403 2.759-6.162 6.162-6.162zm0 2.163c-2.204 0-4 1.796-4 4s1.796 4 4 4 4-1.796 4-4-1.796-4-4-4zm6.406-5.432c-.768 0-1.39.622-1.39 1.39s.622 1.39 1.39 1.39 1.39-.622 1.39-1.39-.622-1.39-1.39-1.39z"/></svg>
+                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07c3.252.148 4.771 1.691 4.919 4.919.058 1.265.07 1.645.07 4.85s-.012 3.585-.07 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.585-.012-4.85-.07c-3.264-.149-4.771-1.677-4.919-4.919-.058-1.265-.07-1.644-.07-4.85s.012-3.584.07-4.85c.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072C2.79 0 1.144 1.171.071 2.298.01 2.502 0 2.827 0 6.008V18c0 3.181.01 3.506.071 3.712.112.385.27.755.456 1.096.223.419.497.771.84.996.343.224.717.398 1.102.508.385.11.77.164 1.157.172 1.28.058 1.688.072 4.947.072s3.668-.014 4.948-.072c3.245-.147 4.775-1.69 4.923-4.923.058-1.265.07-1.673.07-4.923s-.014-3.667-.072-4.947c-.147-3.24-1.67-4.77-4.923-4.919-1.265-.058-1-673-.07-4.923-.07zm0 5.838c3.403 0 6.162 2.759 6.162 6.162S15.403 18.162 12 18.162 5.838 15.403 5.838 12c0-3.403 2.759-6.162 6.162-6.162zm0 2.163c-2.204 0-4 1.796-4 4s1.796 4 4 4 4-1.796 4-4-1.796-4-4-4zm6.406-5.432c-.768 0-1.39.622-1.39 1.39s.622 1.39 1.39 1.39 1.39-.622 1.39-1.39-.622-1.39-1.39-1.39z"/></svg>
                 </a>
             </div>
             

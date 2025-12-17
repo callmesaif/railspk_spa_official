@@ -236,3 +236,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- Scorecard Slideshow Logic ---
+function moveSlide(step, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const slides = container.querySelectorAll('.slide');
+    let currentIdx = -1;
+
+    // Current active slide dhoondein
+    slides.forEach((slide, index) => {
+        if (!slide.classList.contains('hidden')) {
+            currentIdx = index;
+        }
+    });
+
+    // Pehle wali slide chhupayein
+    slides[currentIdx].classList.add('hidden');
+
+    // Agli slide ka index calculate karein
+    let nextIdx = (currentIdx + step + slides.length) % slides.length;
+
+    // Nayi slide dikhayein
+    slides[nextIdx].classList.remove('hidden');
+}

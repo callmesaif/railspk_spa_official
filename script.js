@@ -20,10 +20,17 @@ function showModal(id) {
 
 function closeModal(id) {
     const modal = document.getElementById(id);
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.classList.remove('overflow-hidden');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
     
+    // Check karein agar koi aur modal (jaise Image Modal) open na ho, tabhi scroll enable karein
+    const imgModal = document.getElementById('image-modal');
+    if (!imgModal || imgModal.classList.contains('hidden')) {
+        document.body.classList.remove('overflow-hidden');
+    }
+
     const embedContainer = document.getElementById('latest-video-embed');
     if (embedContainer) {
         // Iframe ko hatane se video ruk jaayegi.
@@ -86,12 +93,50 @@ function closeImageModal() {
     if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
-        if (document.getElementById('latest-video-modal').classList.contains('hidden')) {
+        
+        // FIX for Scrolling Issue: Sirf tabhi scroll enable karein jab koi aur modal open na ho.
+        const videoModal = document.getElementById('latest-video-modal');
+        if (!videoModal || videoModal.classList.contains('hidden')) {
             document.body.classList.remove('overflow-hidden');
         }
     }
 }
 
+
+// --- 5. Scorecard Slideshow Logic (Previous Fix) ---
+function moveSlide(step, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    // Har scorecard mein slides container ko dhoondhen
+    const slideshowContainer = container.querySelector('.slideshow-container');
+    if (!slideshowContainer) return;
+    
+    const slides = slideshowContainer.querySelectorAll('.slide');
+    let currentIdx = -1;
+
+    // Current active slide dhoondein (wo slide jis par 'hidden' class nahi hai)
+    slides.forEach((slide, index) => {
+        if (!slide.classList.contains('hidden')) {
+            currentIdx = index;
+        }
+    });
+
+    if (currentIdx === -1) {
+        // Agar koi slide active nahi hai, toh pehli slide ko active kar dein.
+        slides[0].classList.remove('hidden');
+        currentIdx = 0;
+    }
+    
+    // Pehle wali slide chhupayein
+    slides[currentIdx].classList.add('hidden');
+
+    // Agli slide ka index calculate karein
+    let nextIdx = (currentIdx + step + slides.length) % slides.length;
+
+    // Nayi slide dikhayein
+    slides[nextIdx].classList.remove('hidden');
+}
 
 // --- YouTube Integration Logic ---
 const YOUTUBE_API_KEY = 'AIzaSyAJySKdCS1_BNrvFAf6hGtvMbU0TLgO_7w'; 
@@ -236,28 +281,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-// --- Scorecard Slideshow Logic ---
-function moveSlide(step, containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    const slides = container.querySelectorAll('.slide');
-    let currentIdx = -1;
-
-    // Current active slide dhoondein
-    slides.forEach((slide, index) => {
-        if (!slide.classList.contains('hidden')) {
-            currentIdx = index;
-        }
-    });
-
-    // Pehle wali slide chhupayein
-    slides[currentIdx].classList.add('hidden');
-
-    // Agli slide ka index calculate karein
-    let nextIdx = (currentIdx + step + slides.length) % slides.length;
-
-    // Nayi slide dikhayein
-    slides[nextIdx].classList.remove('hidden');
-}

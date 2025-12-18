@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="script.js"></script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8566339481152239" crossorigin="anonymous"></script>        
     <meta name="google-adsense-account" content="ca-pub-8566339481152239">
 
     <meta name="description" content="The RAILSPK Train Reviews: Punctuality, food quality, aur cleanliness ki rating ke saath Pakistan ki sabhi badi trains ke scorecard dekhein.">
@@ -19,7 +18,7 @@
 <meta property="og:url" content="https://therails.pk/reviews">
 <meta property="og:type" content="article">
 
-<!-- === FINAL FIXED SCHEMA MARKUP (Green Line, Pak Business, & Shalimar) === -->
+<!-- === FINAL FIXED SCHEMA MARKUP (ALL TRAINS) === -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
@@ -86,6 +85,132 @@
           "name": "The RAILSPK"
         }
       }
+    },
+    { 
+      /* --- Karakoram Express Product/Review (NEW) --- */
+      "@type": "Product",
+      "name": "Karakoram Express (AC Standard / Economy)",
+      "image": "https://therails.pk/images/coming_soon.avif", 
+      "description": "Karachi aur Lahore/Rawalpindi ke darmyan chalti hai. Long distance aur reliable service.",
+      "review": { 
+        "@type": "Review",
+        "name": "Karakoram Express Scorecard Review", 
+        "datePublished": "2025-12-17",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "The RAILSPK"
+        }
+      }
+    },
+    { 
+      /* --- Allama Iqbal Express Product/Review (NEW) --- */
+      "@type": "Product",
+      "name": "Allama Iqbal Express (Economy)",
+      "image": "https://therails.pk/images/coming_soon.avif", 
+      "description": "Karachi se Sialkot tak ka safar, ek ahem express train.",
+      "review": { 
+        "@type": "Review",
+        "name": "Allama Iqbal Express Scorecard Review", 
+        "datePublished": "2025-12-17",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "3.5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "The RAILSPK"
+        }
+      }
+    },
+    { 
+      /* --- Karachi Express Product/Review (NEW) --- */
+      "@type": "Product",
+      "name": "Karachi Express (AC / Economy)",
+      "image": "https://therails.pk/images/coming_soon.avif", 
+      "description": "Karachi aur Lahore ke darmyan behtareen aur taiz safar.",
+      "review": { 
+        "@type": "Review",
+        "name": "Karachi Express Scorecard Review", 
+        "datePublished": "2025-12-17",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "4",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "The RAILSPK"
+        }
+      }
+    },
+    { 
+      /* --- Millat Express Product/Review (NEW) --- */
+      "@type": "Product",
+      "name": "Millat Express (Economy)",
+      "image": "https://therails.pk/images/coming_soon.avif", 
+      "description": "Karachi se Sargodha aur Faisalabad tak ka safar aasan banata hai.",
+      "review": { 
+        "@type": "Review",
+        "name": "Millat Express Scorecard Review", 
+        "datePublished": "2025-12-17",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "3",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "The RAILSPK"
+        }
+      }
+    },
+    { 
+      /* --- Bahauddin Zakaria Express Product/Review (NEW) --- */
+      "@type": "Product",
+      "name": "Bahauddin Zakaria Express (Economy)",
+      "image": "https://therails.pk/images/coming_soon.avif", 
+      "description": "Long route train, Karachi se Multan/Lahore tak chalti hai.",
+      "review": { 
+        "@type": "Review",
+        "name": "Bahauddin Zakaria Express Scorecard Review", 
+        "datePublished": "2025-12-17",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "2.5",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "The RAILSPK"
+        }
+      }
+    },
+    { 
+      /* --- Fareed Express Product/Review (NEW) --- */
+      "@type": "Product",
+      "name": "Fareed Express (Economy)",
+      "image": "https://therails.pk/images/coming_soon.avif", 
+      "description": "Lahore aur Bahawalpur ke darmyan chalti hai, important southern route.",
+      "review": { 
+        "@type": "Review",
+        "name": "Fareed Express Scorecard Review", 
+        "datePublished": "2025-12-17",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "2",
+          "bestRating": "5"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "The RAILSPK"
+        }
+      }
     }
   ]
 }
@@ -132,6 +257,7 @@
         .slide.hidden {
             display: none;
         }
+        /* Buttons are removed from HTML, but keeping CSS if they are needed elsewhere */
         .prev, .next {
             cursor: pointer;
             position: absolute;
@@ -209,6 +335,7 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
+                <!-- EXISTING SCORECARD 1: GREEN LINE EXPRESS -->
                 <div id="scorecard-greenline" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden" data-rating="5" data-date="2025-11-15">
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-6">
                         
@@ -267,20 +394,21 @@
                                 <div class="slide hidden"><img src="images/greenline_10.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 10" onclick="openImageModal(this.src)"></div>
                                 <div class="slide hidden"><img src="images/greenline_11.webp" class="w-full h-full object-contain cursor-pointer" alt="Green Line 11" onclick="openImageModal(this.src)"></div> 
      
-                                <a class="prev" onclick="moveSlide(-1, 'scorecard-greenline')">&#10094;</a>
-                                <a class="next" onclick="moveSlide(1, 'scorecard-greenline')">&#10095;</a>
+                                <!-- Manual Navigation Buttons Removed -->
                             </div>
                         </div>
 
                     </div>
                 </div>
+
+                <!-- EXISTING SCORECARD 2: PAK BUSINESS EXPRESS -->
                 <div id="scorecard-pakbusiness" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden" data-rating="4" data-date="2025-11-18">
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-6">
                         
                         <div class="md:col-span-3">
                             <p class="text-sm text-gray-500 mb-2">Last Updated: 29 Nov 2025</p>
                             <h3 class="text-2xl font-bold text-white mb-1 font-heading">Pak Business Express</h3>
-                            <h3 class="text-2xl font-bold text-white mb-1 font-heading">Route: Karachi to Lahore Via Raiwind</h3>
+                            <h3 class="text-2xl font-bold text-white mb-1 font-heading">Route: Karachi to Lahore / Raiwind</h3>
                             <p class="text-md text-rail-accent mb-1">AC Standard / Economy</p>
                             <p class="text-lg font-bold text-white mb-3">8,200Rs / 5,250Rs</p>
                             <p class="text-lg font-semibold text-gray-300">Overall Rating: <span class="stars">★★★★<span class="stars-gray">★</span></span></p>
@@ -329,13 +457,14 @@
                                 <div class="slide hidden"><img src="images/business_7.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 7" onclick="openImageModal(this.src)"></div>
                                 <div class="slide hidden"><img src="images/business_8.webp" class="w-full h-full object-contain cursor-pointer" alt="Pak Business 8" onclick="openImageModal(this.src)"></div>
                                 
-                                <a class="prev" onclick="moveSlide(-1, 'scorecard-pakbusiness')">&#10094;</a>
-                                <a class="next" onclick="moveSlide(1, 'scorecard-pakbusiness')">&#10095;</a>
+                                <!-- Manual Navigation Buttons Removed -->
                             </div>
                         </div>
 
                     </div>
                 </div>
+
+                <!-- EXISTING SCORECARD 3: SHALIMAR EXPRESS -->
                 <div id="scorecard-shalimar" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden" data-rating="3" data-date="2025-11-20">
                     <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-6">
                         
@@ -387,21 +516,76 @@
                                 <div class="slide hidden"><img src="images/shalimar_7.jpg" class="w-full h-full object-contain cursor-pointer" alt="Shalimar Express 4" onclick="openImageModal(this.src)"></div>
                                 <div class="slide hidden"><img src="images/shalimar_8.jpg" class="w-full h-full object-contain cursor-pointer" alt="Shalimar Express 5" onclick="openImageModal(this.src)"></div>
                                 <div class="slide hidden"><img src="images/Shalimar_6.jpg" class="w-full h-full object-contain cursor-pointer" alt="Shalimar Express 6" onclick="openImageModal(this.src)"></div>
-                                <a class="prev" onclick="moveSlide(-1, 'scorecard-shalimar')">&#10094;</a>
-                                <a class="next" onclick="moveSlide(1, 'scorecard-shalimar')">&#10095;</a>
+                                <!-- Manual Navigation Buttons Removed -->
                             </div>
                         </div>
 
                     </div>
                 </div>
+
+
+                <!-- NEW SCORECARD 4: KARAKORAM EXPRESS -->
+                <div id="scorecard-karakoram" class="bg-gray-800 rounded-xl shadow-xl border border-gray-700 overflow-hidden" data-rating="4" data-date="2025-12-17">
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 p-6">
+                        
+                        <div class="md:col-span-3">
+                            <p class="text-sm text-gray-500 mb-2">Last Updated: 17 Dec 2025</p>
+                            <h3 class="text-2xl font-bold text-white mb-1 font-heading">Karakoram Express</h3>
+                            <h4 class="text-2xl font-bold text-white mb-1 font-heading">Route: Karachi to Lahore / Faisalabad</h4>
+                            <p class="text-md text-rail-accent mb-1">AC Business / AC Standard / Economy</p>
+                            <p class="text-lg font-bold text-white mb-3">15,500Rs / 9,100Rs / 4,850Rs</p>
+                            <p class="text-lg font-semibold text-gray-300">Overall Rating: <span class="stars">★★★★<span class="stars-gray">★</span></span></p>
+                            <ul class="text-gray-300 text-sm space-y-1 mt-4 border-t border-gray-700 pt-4">
+                                <li class="flex justify-between"><span>Punctuality:</span> <span class="stars">★★★<span class="stars-gray">★★</span></span></li>
+                                <li class="flex justify-between"><span>Cleanliness:</span> <span class="stars">★★★★<span class="stars-gray">★</span></span></li>
+                                <li class="flex justify-between"><span>Food Quality:</span> <span class="stars">★★★★<span class="stars-gray">★</span></span></li>
+                                <li class="flex justify-between"><span>Staff Behavior:</span> <span class="stars">★★★★<span class="stars-gray">★</span></span></li>
+                            </ul>
+                            <div class="flex gap-4 mt-4 text-sm">
+                                <div class="w-full">
+                                    <h4 class="font-semibold text-green-400">✅ Pros</h4>
+                                    <ul class="list-disc list-inside text-gray-300 mt-1">
+                                        <li>AC Sleeper available</li>
+                                        <li>Reliable long-distance service</li>
+                                        <li>Good catering options</li>
+                                    </ul>
+                                </div>
+                                <div class="w-full">
+                                    <h4 class="font-semibold text-red-400">❌ Cons</h4>
+                                    <ul class="list-disc list-inside text-gray-300 mt-1">
+                                        <li>Frequent delays</li>
+                                        <li>Older coaches in Economy class</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <blockquote class="bg-gray-700/50 border-l-4 border-rail-accent p-3 rounded-r-lg mt-4">
+                                <p class="text-gray-200 text-sm italic">
+                                    <span class="font-bold text-white">Verdict:</span> "Premium class mein safar ke liye acha intikhab, magar punctuality behtar ho sakti hai."
+                                </p>
+                            </blockquote>
+                        </div>
+                        
+                        <div class="md:col-span-2 flex flex-col gap-4">
+                            <div class="w-full aspect-video bg-gray-700 rounded-lg overflow-hidden shadow-lg border border-gray-700">
+                                <iframe class="w-full h-full" src="https://www.youtube.com/embed/GvWitS5uM5g?si=IYITn690YSwqaEIo" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            <div class="slideshow-container w-full aspect-video bg-gray-900 rounded-lg overflow-hidden relative">
+                                
+                                <div class="slide"><img src="images/coming_soon.avif" class="w-full h-full object-contain cursor-pointer" alt="Karakoram Express Placeholder" onclick="openImageModal(this.src)"></div> 
+                                <!-- No additional slides for placeholder -->
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
         </section>
         </main>
-
-<div id="image-modal" class="hidden fixed inset-0 z-[100] bg-black/90 items-center justify-center p-4">
-    <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-rail-accent">&times;</button>
-    <img id="modal-image-content" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl object-contain">
-</div>
+        
+    <!-- Image Zoom Modal (ADDED HERE) -->
+    <div id="image-modal" class="hidden fixed inset-0 z-[100] bg-black/90 items-center justify-center p-4" onclick="if(event.target.id === 'image-modal') closeImageModal()">
+        <button onclick="closeImageModal()" class="absolute top-6 right-6 text-white text-4xl hover:text-rail-accent z-[110]">&times;</button>
+        <img id="modal-image-content" src="" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl object-contain">
+    </div>
 
 </body>
 </html>
